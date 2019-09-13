@@ -17,6 +17,9 @@ import contactS from '../../../media/appIcon/contact0.png'
 import contact from '../../../media/appIcon/contact.png'
 import Api from '../../Api/Api'
 import CartsProduct from '../../Api/CartsProduct';
+import InitData from '../../Api/InitData'
+import SaveCart from '../../Api/SaveCart'
+import GetCart from '../../Api/GetCart'
 
 export default class Shop extends PureComponent {
     constructor(props) {
@@ -25,20 +28,23 @@ export default class Shop extends PureComponent {
              selectedTab: 'Home',
              categoryTypes: [],
              topProducts: [],
-             cartArray: []
+             cartArray: [0]
      };
      CartsProduct.addProductToCart = this.addProductToCart.bind(this)
     }
     componentDidMount() {
-        const url = `${Api}api/`
-        fetch(url)
-        .then(response => response.json())
+        InitData()
         .then(resJSON => {
             this.setState({ categoryTypes: resJSON.type, topProducts: resJSON.product });
         });
+        GetCart()
+        .then(cartArray => this.setState({ cartArray }))
     }
     addProductToCart(product) {
-        this.setState({ cartArray: this.state.cartArray.concat({product, quantity: 1}) });
+        this.setState(
+            { cartArray: this.state.cartArray.concat({product, quantity: 1}) },
+        () =>SaveCart(this.state.cartArray)
+        );
     }
     render() {
         const { iconStyle } = styles

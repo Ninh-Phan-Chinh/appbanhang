@@ -24,8 +24,8 @@ export default class CartView extends PureComponent {
                         <View key = {item.product.id} style={styleDress}>
                             <Image source={{ uri: `${Api}api/images/product/${item.product.images[0]}` }} style={styleImage} />
                             <View style={styleA2}>
-                                <Text style={{ fontSize: 20, color: '#9e9e9e' }}>{toTitleCase(item.product.name)}</Text>
-                                <Text style={{ fontSize: 20, color: '#e91e63' }}>{item.product.price}$</Text>
+                                <Text style={{ fontSize: 16, color: '#9e9e9e' }}>{toTitleCase(item.product.name)}</Text>
+                                <Text style={{ fontSize: 16, color: '#e91e63' }}>{item.product.price}$</Text>
                                 <View style={styleNumber}>
                                     <TouchableOpacity onPress={() => { this.setState({ value: this.state.value + 1 }) }}>
                                         <Text style={{ fontSize: 25 }} >+</Text>
