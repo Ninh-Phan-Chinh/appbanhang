@@ -38,7 +38,7 @@ export default class Shop extends PureComponent {
         });
     }
     addProductToCart(product) {
-        this.setState({ cartArray: this.state.cartArray.concat(product) });
+        this.setState({ cartArray: this.state.cartArray.concat({product, quantity: 1}) });
     }
     render() {
         const { iconStyle } = styles

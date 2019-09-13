@@ -21,4 +21,3 @@ export default class Cart extends PureComponent {
         );
     }
 }
-//long
