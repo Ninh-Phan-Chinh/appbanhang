@@ -28,9 +28,10 @@ export default class Shop extends PureComponent {
              selectedTab: 'Home',
              categoryTypes: [],
              topProducts: [],
-             cartArray: [0]
-     };
-     CartsProduct.addProductToCart = this.addProductToCart.bind(this)
+             cartArray: []
+     }; 
+     CartsProduct.addProductToCart = this.addProductToCart.bind(this);
+     CartsProduct.incrQuantity = this.incrQuantity.bind(this);  
     }
     componentDidMount() {
         InitData()
@@ -46,6 +47,19 @@ export default class Shop extends PureComponent {
         () =>SaveCart(this.state.cartArray)
         );
     }
+
+    incrQuantity(productId) {
+        const newCart = this.state.cartArray.map( item =>{
+            if ( item.product.id !== productId) return item;
+            return { product: item.product, quantity: item.quantity +1}
+        });
+        this.setState({ cartArray: newCart})
+    }
+
+    decrQuantity(productId) {
+        
+    }
+
     render() {
         const { iconStyle } = styles
         const {categoryTypes, selectedTab,topProducts,cartArray} = this.state
@@ -61,7 +75,7 @@ export default class Shop extends PureComponent {
                         renderIcon={() => <Image source={iconHomeS} style={iconStyle} />}
                         renderSelectedIcon={() => <Image source={iconHome} style={iconStyle} />}
                         onPress={() => this.setState({ selectedTab: 'Home' })}>
-                        <Home categoryTypes = {categoryTypes} topProducts = {topProducts}/>
+                        <Home categoryTypes = {categoryTypes} topProducts = {topProducts} navigation = {this.props}/>
                     </TabNavigator.Item>
                     <TabNavigator.Item
                         selected={selectedTab === 'Cart'}

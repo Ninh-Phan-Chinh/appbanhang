@@ -36,7 +36,7 @@ export default class Collection extends PureComponent {
                         ))}
 
                         
-                    </Swiper>
+                    </Swiper>  
 
                 </View>
 
