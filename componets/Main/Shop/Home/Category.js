@@ -13,7 +13,7 @@ const { height, width } = Dimensions.get('window')
 
 export default class Collection extends PureComponent {
     render() {
-        const { categoryTypes } = this.props;
+        
         const { wraper, textStyle, imagestyle, textImage } = styles
         return (
             <View style={wraper}>
@@ -22,20 +22,24 @@ export default class Collection extends PureComponent {
                 </View>
                 <View style={{ flex: 5, }}>
                     <Swiper >
-                   
-                            
-                            
-                        {categoryTypes.map(e => (
-                             <TouchableOpacity key ={e.id} onPress={() => {
-                                this.props.navigation.navigate('ListProduct')
-                            }}>
-                                <ImageBackground  resizeMode='stretch' source={{ uri: `${Api}api/images/type/${e.image}` }} style={imagestyle}>
-                                    <Text style={textImage}>{e.name}</Text>
-                                </ImageBackground >
-                            </TouchableOpacity>
-                        ))}
 
-                        
+
+                        <TouchableOpacity onPress={() => {
+                            this.props.navigation.navigate('ListProduct')
+                        }}>
+                            <ImageBackground resizeMode='stretch' source={maxIcon} style={imagestyle} >
+                                <Text style={textImage}>Maxi Dress</Text>
+                            </ImageBackground >
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => {
+                            this.props.navigation.navigate('ListProduct')
+                        }}>
+                            <ImageBackground resizeMode='stretch' source={partyIcon} style={imagestyle} >
+                                <Text style={textImage}>Maxi Dress</Text>
+                            </ImageBackground >
+                        </TouchableOpacity>
+
+
                     </Swiper>
 
                 </View>

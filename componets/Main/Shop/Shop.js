@@ -25,30 +25,16 @@ export default class Shop extends PureComponent {
     constructor(props) {
         super(props)
         this.state = {
-             selectedTab: 'Home',
-             categoryTypes: [],
-             topProducts: [],
-             cartArray: [0]
+             selectedTab: 'Home'
+             
      };
-     CartsProduct.addProductToCart = this.addProductToCart.bind(this)
+    
     }
-    componentDidMount() {
-        InitData()
-        .then(resJSON => {
-            this.setState({ categoryTypes: resJSON.type, topProducts: resJSON.product });
-        });
-        GetCart()
-        .then(cartArray => this.setState({ cartArray }))
-    }
-    addProductToCart(product) {
-        this.setState(
-            { cartArray: this.state.cartArray.concat({product, quantity: 1}) },
-        () =>SaveCart(this.state.cartArray)
-        );
-    }
+   
+    
     render() {
         const { iconStyle } = styles
-        const {categoryTypes, selectedTab,topProducts,cartArray} = this.state
+        const { selectedTab} = this.state
         return (
             <View style={{ flex: 1 }}>
                 <Header openMenu={this.props.open}
@@ -61,7 +47,7 @@ export default class Shop extends PureComponent {
                         renderIcon={() => <Image source={iconHomeS} style={iconStyle} />}
                         renderSelectedIcon={() => <Image source={iconHome} style={iconStyle} />}
                         onPress={() => this.setState({ selectedTab: 'Home' })}>
-                        <Home categoryTypes = {categoryTypes} topProducts = {topProducts}/>
+                        <Home />
                     </TabNavigator.Item>
                     <TabNavigator.Item
                         selected={selectedTab === 'Cart'}
@@ -69,9 +55,9 @@ export default class Shop extends PureComponent {
                         renderIcon={() => <Image source={cartS} style={iconStyle} />}
                         renderSelectedIcon={() => <Image source={cart} style={iconStyle} />}
                         onPress={() => this.setState({ selectedTab: 'Cart' })}
-                        badgeText={cartArray.length}
+                        badgeText={0}
                     >
-                        <Cart cartArray={cartArray}/>
+                        <Cart/>
                     </TabNavigator.Item>
                     <TabNavigator.Item
                         selected={selectedTab === 'Search'}

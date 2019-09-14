@@ -17,7 +17,7 @@ export default class TopProduct extends PureComponent {
         this.props.navigation.navigate('ProductDetail', { productItem });
     }
     render() {
-        const {topProducts} = this.props
+        const { topProducts } = this.props
         const { container, title, titleContainer,
             body, titleBody, image, productName, productPrice } = styles
         return (
@@ -25,23 +25,45 @@ export default class TopProduct extends PureComponent {
                 <View style={titleContainer}>
                     <Text style={title}> Top  Product </Text>
                 </View>
-                <FlatList
-                    contentContainerStyle={body}
-                    data={topProducts}
-                    keyExtractor={item => item.id}
-                    numColumns={2}
-                    renderItem={({ item }) => (
-                        < TouchableOpacity onPress={() => {
-                            this.navigateDetail(item)
-                        }}>
-                            <View style={{ titleBody }}>
-                                <Image source={{ uri: `${Api}api/images/product/${item.images[0]}` }}  style={image}/>
-                                <Text style={productName}>{item.name.toUpperCase()}</Text>
-                                <Text style={productPrice}>{item.price}$</Text>
-                            </View>
-                        </TouchableOpacity >
-                    )}
-                />
+                <View style={body}>
+                    < TouchableOpacity onPress={() => {
+                        this.props.navigation.navigate('ProductDetail')
+                    }}>
+                        <View style={{ titleBody }}>
+                            <Image source={sp1} style={image} />
+                            <Text style={productName}>PRODUCT NAME</Text>
+                            <Text style={productPrice}>550$</Text>
+                        </View>
+                    </TouchableOpacity >
+                    <TouchableOpacity onPress={() => {
+                        this.props.navigation.navigate('ProductDetail')
+                    }}>
+                        <View style={{ titleBody }}>
+                            <Image source={sp2} style={image} />
+                            <Text style={productName}>PRODUCT NAME</Text>
+                            <Text style={productPrice}>420$</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => {
+                        this.props.navigation.navigate('ProductDetail')
+                    }}>
+                        <View style={{ titleBody }}>
+                            <Image source={sp3} style={image} />
+                            <Text style={productName}>PRODUCT NAME</Text>
+                            <Text style={productPrice}>550$</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => {
+                        this.props.navigation.navigate('ProductDetail')
+                    }}>
+                        <View style={{ titleBody }}>
+                            <Image source={sp4} style={image} />
+                            <Text style={productName}>PRODUCT NAME</Text>
+                            <Text style={productPrice}>420$</Text>
+                        </View>
+                    </TouchableOpacity>
+
+                </View>
             </View>
         )
     }
@@ -66,18 +88,18 @@ const styles = StyleSheet.create({
         fontSize: 20
     },
     body: {
-        alignItems:'center',
+        alignItems: 'center',
         justifyContent: 'space-around',
-        flex:1
+        flex: 1
     },
     titleBody: {
-        width: produtWidth,        
+        width: produtWidth,
     },
     image: {
         width: produtWidth,
         height: productImageHeight,
-        marginRight:5,
-        marginLeft:5
+        marginRight: 5,
+        marginLeft: 5
     },
     productName: {
         paddingLeft: 10,

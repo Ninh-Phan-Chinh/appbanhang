@@ -5,19 +5,12 @@ import {fromLeft} from 'react-navigation-transitions'
 
 import ProductDetail from '../ProductDetail/ProductDetail';
 import CartView from '../Cart/CartView';
-export default class Cart extends PureComponent {
-    render() {
-        const StackNavigator = createStackNavigator({
-            CartView: { screen: CartView, params: this.props },
-            ProductDetail: { screen: ProductDetail }
-        }, {
-                initialRouteName: 'CartView',
-                transitionConfig: () => fromLeft(1000),
-                headerMode: 'none'
-        });
-        const Stack = createAppContainer(StackNavigator);
-        return (
-            <Stack />
-        );
-    }
-}
+const StackNavigator = createStackNavigator({
+    CartView: { screen: CartView},
+    ProductDetail: { screen: ProductDetail }
+}, {
+        initialRouteName: 'CartView',
+        transitionConfig: () => fromLeft(1000),
+        headerMode: 'none'
+});
+export default createAppContainer(StackNavigator)
