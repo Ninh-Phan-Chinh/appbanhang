@@ -9,8 +9,6 @@ import sp4 from '../../../../media/temp/sp4.jpeg'
 import Api from '../../../Api/Api'
 
 export default class TopProduct extends PureComponent {
-    
-
     constructor(props) {
         super(props);
         this.navigateDetail = this.navigateDetail.bind(this);

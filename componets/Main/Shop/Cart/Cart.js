@@ -5,14 +5,18 @@ import iconParty1 from '../../../../media/appIcon/party.jpeg'
 
 import Api from '../../../Api/Api'
 
-
 function toTitleCase(str) {
     return str.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
 }
-export default class CartView extends PureComponent {
+
+export default class Cart extends PureComponent {
     constructor(props) {
         super(props);
         this.state = { value: 0 }
+    }
+    gotoDetail() {
+        const { navigation } = this.props;
+        navigation.navigate('ProductDetail');
     }
     render() {
         const { cartArray } = this.props
@@ -21,11 +25,11 @@ export default class CartView extends PureComponent {
         return (
             <View style={container}>
                 <ScrollView style={body}>
-                    {cartArray.map(product => (
-                        <View key = {product} style={styleDress}>
+                    {cartArray.map(cartItem => (
+                        <View  style={styleDress}>
                             <Image source={iconParty1} style={styleImage} />
                             <View style={styleA2}>
-                                <Text style={{ fontSize: 20, color: '#9e9e9e' }}>Lace Sleeve Si</Text>
+                                <Text style={{ fontSize: 20, color: '#9e9e9e' }}>{toTitleCase(cartItem.name)}</Text>
                                 <Text style={{ fontSize: 20, color: '#e91e63' }}>227$</Text>
                                 <View style={styleNumber}>
                                     <TouchableOpacity onPress={() => { this.setState({ value: this.state.value + 1 }) }}>

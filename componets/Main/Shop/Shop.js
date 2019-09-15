@@ -28,7 +28,7 @@ export default class Shop extends PureComponent {
              selectedTab: 'Home',
              types: [],
              topProducts: [],
-             cartArray: [1]
+             cartArray: []
      };  
      CartsProduct.addProductToCart = this.addProductToCart.bind(this);
     }
