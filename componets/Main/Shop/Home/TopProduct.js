@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Text, View, StyleSheet, FlatList, Image, Dimensions, TouchableOpacity } from 'react-native'
+import { FlatList, Text, View, StyleSheet,  Image, Dimensions, TouchableOpacity } from 'react-native'
 
 import sp1 from '../../../../media/temp/sp1.jpeg'
 import sp2 from '../../../../media/temp/sp2.jpeg'
@@ -9,6 +9,8 @@ import sp4 from '../../../../media/temp/sp4.jpeg'
 import Api from '../../../Api/Api'
 
 export default class TopProduct extends PureComponent {
+    
+
     constructor(props) {
         super(props);
         this.navigateDetail = this.navigateDetail.bind(this);
@@ -25,45 +27,25 @@ export default class TopProduct extends PureComponent {
                 <View style={titleContainer}>
                     <Text style={title}> Top  Product </Text>
                 </View>
-                <View style={body}>
-                    < TouchableOpacity onPress={() => {
-                        this.props.navigation.navigate('ProductDetail')
-                    }}>
-                        <View style={{ titleBody }}>
-                            <Image source={sp1} style={image} />
-                            <Text style={productName}>PRODUCT NAME</Text>
-                            <Text style={productPrice}>550$</Text>
-                        </View>
-                    </TouchableOpacity >
-                    <TouchableOpacity onPress={() => {
-                        this.props.navigation.navigate('ProductDetail')
-                    }}>
-                        <View style={{ titleBody }}>
-                            <Image source={sp2} style={image} />
-                            <Text style={productName}>PRODUCT NAME</Text>
-                            <Text style={productPrice}>420$</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {
-                        this.props.navigation.navigate('ProductDetail')
-                    }}>
-                        <View style={{ titleBody }}>
-                            <Image source={sp3} style={image} />
-                            <Text style={productName}>PRODUCT NAME</Text>
-                            <Text style={productPrice}>550$</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {
-                        this.props.navigation.navigate('ProductDetail')
-                    }}>
-                        <View style={{ titleBody }}>
-                            <Image source={sp4} style={image} />
-                            <Text style={productName}>PRODUCT NAME</Text>
-                            <Text style={productPrice}>420$</Text>
-                        </View>
-                    </TouchableOpacity>
+                <FlatList
+                    contentContainerStyle={body}
+                    keyExtractor={item => item.id}
+                    numColumns={2}
+                    data={topProducts}
+                    renderItem={({ item }) => (
+                        < TouchableOpacity onPress={() => {
+                            this.navigateDetail(item)
+                        }}>
+                            <View style={{ titleBody }}>
+                                <Image source={{uri: `${Api}api/images/product/${item.images[0]}`}} style={image} />
+                                <Text style={productName}>{item.name}</Text>
+                                <Text style={productPrice}>{item.price}$</Text>
+                            </View>
+                        </TouchableOpacity >
+                    )}
+                />
 
-                </View>
+
             </View>
         )
     }

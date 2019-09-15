@@ -8,11 +8,14 @@ import sp5 from '../../../../media/temp/sp5.jpeg'
 import backIcon from '../../../../media/appIcon/back.png'
 import cartfullIcon from '../../../../media/appIcon/cartfull.png'
 export default class ProductDetail extends PureComponent {
-    
+    addProductToCart() {
+        const product = this.props.navigation.getParam('productItem');
+        CartsProduct.addProductToCart(product);
+    }
     render() {
         const { container, styleDetail,txtbotton,styleSP,moneny,information
              ,header,txtMoney,styleInformation,botton,colorStyle, imageIcon,imageStyle} = styles
-            
+        const { name, price, color, material, description, images } = this.props.navigation.getParam('productItem')   
         return (
             <View style={container}>
                 <View style={styleDetail}>
@@ -22,27 +25,27 @@ export default class ProductDetail extends PureComponent {
                         }}>
                             <Image source={backIcon} style={imageIcon} />
                         </TouchableOpacity>
-                        <TouchableOpacity >
+                        <TouchableOpacity onPress={this.addProductToCart.bind(this)}>
                             <Image source={cartfullIcon} style={imageIcon} />
                         </TouchableOpacity>
                     </View>
                     <View style = {styleSP}>
-                        <Image source={sp4} style ={imageStyle}/>
-                        <Image source={sp5} style ={imageStyle}/>
+                        <Image source={{uri: `${Api}api/images/product/${images[0]}`}} style ={imageStyle}/>
+                        <Image source={{uri: `${Api}api/images/product/${images[1]}`}} style ={imageStyle}/>
                     </View>
                     <View style={moneny}>
-                        <Text style={{fontSize: 20}}>balck off the</Text>
-                        <Text style={txtMoney}> / 200$</Text>
+                        <Text style={{fontSize: 20}}>{name.toUpperCase()}</Text>
+                        <Text style={txtMoney}> / {price}$</Text>
                     </View>
                     <View style={information}>
                         <Text  style={styleInformation}>
-                        asdasdasd
+                        {description}
                         </Text>
                     </View>
                     <View style={botton}>
-                        <Text style = {txtbotton}>Material asdas</Text>
+                        <Text style = {txtbotton}>Material {material}</Text>
                         <View style={{flexDirection:'row'}}>
-                        <Text style = {txtbotton}>Color black</Text>
+                        <Text style = {txtbotton}>Color {color}</Text>
                         <View style={colorStyle}/>
                         </View>                      
                     </View>
@@ -92,7 +95,7 @@ const styles = StyleSheet.create({
     information:{
         marginTop: 30,
         marginLeft:17,
-        marginRight: 17
+        marginRight: 17,
     },
     styleInformation:{
         color:'#9e9e9e',
@@ -119,6 +122,6 @@ const styles = StyleSheet.create({
     },
     txtbotton:{
         color: '#e91e63',
-        marginRight: 10
+        marginRight: 10,
     }
 })

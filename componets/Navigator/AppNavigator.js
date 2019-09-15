@@ -7,13 +7,17 @@ import OrderHistory from '../OrderHistory/OrderHistory'
 import ChangeInfo from '../ChangeInfo/ChangeInfo'
 import Authentication from '../Authentication/Authentication'
 import Main from '../Main/Main'
+import ProductDetail from '../Main/Shop/ProductDetail/ProductDetail'
+import ListProduct from '../Main/Shop/ListProduct/ListProduct'
 
 const Appnavigator = createStackNavigator(
     {
         Authentication: { screen: Authentication },
         OrderHistory: { screen: OrderHistory },
         Main: { screen: Main },
-        ChangeInfo: { screen: ChangeInfo }
+        ChangeInfo: { screen: ChangeInfo },
+        ProductDetail: {screen: ProductDetail},
+        ListProduct: {screen: ListProduct}
     },
     {
         initialRouteName: 'Main',

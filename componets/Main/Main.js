@@ -19,7 +19,7 @@ export default class Main extends PureComponent {
                 openDrawerOffset={0.4}
                 tapToClose={true}
             >
-                <Shop open = {this.openControlPanel.bind(this)}/>
+                <Shop open = {this.openControlPanel.bind(this)} navigation = {this.props.navigation}/>
             </Drawer>
         )
     }

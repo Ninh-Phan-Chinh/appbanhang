@@ -25,16 +25,31 @@ export default class Shop extends PureComponent {
     constructor(props) {
         super(props)
         this.state = {
-             selectedTab: 'Home'
-             
-     };
-    
+             selectedTab: 'Home',
+             types: [],
+             topProducts: [],
+             cartArray: [1]
+     };  
+     CartsProduct.addProductToCart = this.addProductToCart.bind(this);
+    }
+    addProductToCart(product) {
+        this.setState({cartArray: this.state.cartArray.concat(product)})
+    }
+
+    componentDidMount() {
+        const Url = `${Api}api`
+        fetch(Url)
+        .then(res => res.json()) 
+        .then(resJSON =>{
+            const {type, product} = resJSON;
+            this.setState({types: type,topProducts: product})
+        })
     }
    
     
     render() {
         const { iconStyle } = styles
-        const { selectedTab} = this.state
+        const { types,selectedTab,topProducts,cartArray} = this.state
         return (
             <View style={{ flex: 1 }}>
                 <Header openMenu={this.props.open}
@@ -47,7 +62,7 @@ export default class Shop extends PureComponent {
                         renderIcon={() => <Image source={iconHomeS} style={iconStyle} />}
                         renderSelectedIcon={() => <Image source={iconHome} style={iconStyle} />}
                         onPress={() => this.setState({ selectedTab: 'Home' })}>
-                        <Home />
+                        <Home types ={types}  topProducts = {topProducts} navigation = {this.props.navigation}/>
                     </TabNavigator.Item>
                     <TabNavigator.Item
                         selected={selectedTab === 'Cart'}
@@ -55,9 +70,9 @@ export default class Shop extends PureComponent {
                         renderIcon={() => <Image source={cartS} style={iconStyle} />}
                         renderSelectedIcon={() => <Image source={cart} style={iconStyle} />}
                         onPress={() => this.setState({ selectedTab: 'Cart' })}
-                        badgeText={0}
+                        badgeText={cartArray.length}
                     >
-                        <Cart/>
+                        <Cart cartArray={cartArray} navigation = {this.props.navigation}/>
                     </TabNavigator.Item>
                     <TabNavigator.Item
                         selected={selectedTab === 'Search'}
