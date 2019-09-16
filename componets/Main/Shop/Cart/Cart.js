@@ -10,10 +10,6 @@ function toTitleCase(str) {
 }
 
 export default class Cart extends PureComponent {
-    constructor(props) {
-        super(props);
-        this.state = { value: 0 }
-    }
     gotoDetail() {
         const { navigation } = this.props;
         navigation.navigate('ProductDetail');
@@ -27,17 +23,17 @@ export default class Cart extends PureComponent {
                 <ScrollView style={body}>
                     {cartArray.map(cartItem => (
                         <View  style={styleDress}>
-                            <Image source={iconParty1} style={styleImage} />
+                            <Image source={{uri: `${Api}api/images/product/${cartItem.product.images[0]}`}} style={styleImage} />
                             <View style={styleA2}>
-                                <Text style={{ fontSize: 20, color: '#9e9e9e' }}>{toTitleCase(cartItem.name)}</Text>
-                                <Text style={{ fontSize: 20, color: '#e91e63' }}>227$</Text>
+                                <Text style={{ fontSize: 16, color: '#9e9e9e' }}>{toTitleCase(cartItem.product.name)}</Text>
+                                <Text style={{ fontSize: 17, color: '#e91e63' }}>{cartItem.product.price}$</Text>
                                 <View style={styleNumber}>
-                                    <TouchableOpacity onPress={() => { this.setState({ value: this.state.value + 1 }) }}>
-                                        <Text style={{ fontSize: 25 }} >+</Text>
+                                    <TouchableOpacity >
+                                        <Text style={{ fontSize: 20 }} >+</Text>
                                     </TouchableOpacity>
-                                    <Text style={{ fontSize: 20 }}>{this.state.value}</Text>
-                                    <TouchableOpacity onPress={() => { this.setState({ value: this.state.value - 1 < 0 ? 0 : this.state.value - 1 }) }}>
-                                        <Text style={{ fontSize: 25 }}>-</Text>
+                                    <Text style={{ fontSize: 20 }}>{cartItem.quantity}</Text>
+                                    <TouchableOpacity>
+                                        <Text style={{ fontSize: 20 }}>-</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
