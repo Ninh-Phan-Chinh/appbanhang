@@ -34,17 +34,19 @@ export default class Shop extends PureComponent {
     }
 
     componentDidMount() {
-        const Url = `${Api}api`
-        fetch(Url)
-        .then(res => res.json()) 
+        InitData()
         .then(resJSON =>{
             const {type, product} = resJSON;
             this.setState({types: type,topProducts: product})
-        })
+        });
+        GetCart()
+        .then(cartArray => this.setState({cartArray}))
     }
    
     addProductToCart(product) {
-        this.setState({ cartArray: this.state.cartArray.concat({ product, quantity: 1 }) });
+        this.setState({ cartArray: this.state.cartArray.concat({ product, quantity: 1 }) },
+        () => SaveCart(this.state.cartArray)
+        )
     }
     
     render() {
