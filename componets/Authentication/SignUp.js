@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Text, View,TouchableOpacity,StyleSheet,TextInput } from 'react-native'
+import { Text, View,TouchableOpacity,StyleSheet,TextInput,Alert } from 'react-native'
 import register from '../Api/register'
 
 export default class SignUp extends PureComponent {
@@ -17,8 +17,31 @@ export default class SignUp extends PureComponent {
         const {name,email, password} = this.state;
         register(email,name,password)
         .then(res =>{
-            console.log(res);
+            if (res === 'THANH_CONG') return this.onSuccess();
+            return this.onFail();
         });
+    }
+
+    onSuccess() {
+        Alert.alert(
+            'Notice',
+            'Sign up successfully',
+            [
+              {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+            ],
+            {cancelable: false},
+          );
+    }
+
+    onFail() {
+        Alert.alert(
+            'Notice',
+            'Email has been used by other',
+            [
+              {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+            ],
+            {cancelable: false},
+          );
     }
 
     render() {
@@ -48,6 +71,7 @@ export default class SignUp extends PureComponent {
                 style={inputstyle} 
                 placeholder='Re-enter your Password' 
                 value ={this.state.rePassword}
+                secureTextEntry
                 onChangeText = {text =>this.setState({rePassword: text})}
             />
             <TouchableOpacity style={bigButton} onPress={this.registerUser.bind(this)}>

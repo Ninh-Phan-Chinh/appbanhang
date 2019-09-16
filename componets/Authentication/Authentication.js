@@ -5,6 +5,7 @@ import {
 } from 'react-native'
 
 import register from '../Api/register'
+
 import icBack from '../../media/appIcon/back_white.png'
 import iconLogo from '../../media/appIcon/ic_logo.png'
 
