@@ -4,12 +4,16 @@ import { Text, View, TouchableOpacity, StyleSheet, Image, ScrollView } from 'rea
 import iconParty1 from '../../../../media/appIcon/party.jpeg'
 
 import Api from '../../../Api/Api'
+import CartsProduct from '../../../Api/CartsProduct'
 
 function toTitleCase(str) {
     return str.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
 }
 
 export default class Cart extends PureComponent {
+    incrQuantity(id) {
+        CartsProduct.incrquantity(id);
+    }
     gotoDetail() {
         const { navigation } = this.props;
         navigation.navigate('ProductDetail');
@@ -28,7 +32,7 @@ export default class Cart extends PureComponent {
                                 <Text style={{ fontSize: 16, color: '#9e9e9e' }}>{toTitleCase(cartItem.product.name)}</Text>
                                 <Text style={{ fontSize: 17, color: '#e91e63' }}>{cartItem.product.price}$</Text>
                                 <View style={styleNumber}>
-                                    <TouchableOpacity >
+                                    <TouchableOpacity onPress = {() => this.incrQuantity(cartItem.product.id)}>
                                         <Text style={{ fontSize: 20 }} >+</Text>
                                     </TouchableOpacity>
                                     <Text style={{ fontSize: 20 }}>{cartItem.quantity}</Text>
