@@ -14,6 +14,15 @@ export default class Cart extends PureComponent {
     incrQuantity(id) {
         CartsProduct.incrquantity(id);
     }
+
+    decrQuantity(id) {
+        CartsProduct.decrQuantity(id)
+    }
+
+    removeProduct(id) {
+        CartsProduct.removeProduct(id);
+    }
+
     gotoDetail() {
         const { navigation } = this.props;
         navigation.navigate('ProductDetail');
@@ -33,16 +42,16 @@ export default class Cart extends PureComponent {
                                 <Text style={{ fontSize: 17, color: '#e91e63' }}>{cartItem.product.price}$</Text>
                                 <View style={styleNumber}>
                                     <TouchableOpacity onPress = {() => this.incrQuantity(cartItem.product.id)}>
-                                        <Text style={{ fontSize: 20 }} >+</Text>
+                                        <Text style={{ fontSize: 20,marginTop: 5 }} >+</Text>
                                     </TouchableOpacity>
-                                    <Text style={{ fontSize: 20 }}>{cartItem.quantity}</Text>
-                                    <TouchableOpacity>
-                                        <Text style={{ fontSize: 20 }}>-</Text>
+                                    <Text style={{ fontSize: 20,marginTop: 5 }}>{cartItem.quantity}</Text>
+                                    <TouchableOpacity onPress = {() => this.decrQuantity(cartItem.product.id)}>
+                                        <Text style={{ fontSize: 30 }}>-</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
                             <View style={stylecA3}>
-                                <TouchableOpacity>
+                                <TouchableOpacity onPress={() =>this.removeProduct(cartItem.product.id)}>
                                     <Text style={{ fontSize: 17 }}>X</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={() => { this.props.navigation.navigate('ProductDetail') }}>
