@@ -1,12 +1,15 @@
 import React, { PureComponent } from 'react'
 import {
     Text, View, TouchableOpacity,
-    Image, StyleSheet, TextInput
+    Image, StyleSheet
 } from 'react-native'
 
 import register from '../Api/register'
 import icBack from '../../media/appIcon/back_white.png'
 import iconLogo from '../../media/appIcon/ic_logo.png'
+
+import SignIn from './SignIn'
+import SignUp from './SignUp'
 
 export default class Authentication extends PureComponent {
     constructor(props){
@@ -25,28 +28,9 @@ export default class Authentication extends PureComponent {
             container, controlStyle, bigButton,
             signInstyle, signUpStyle, inputstyle } = styles
 
-        const signInJSX = (
-            <View>
-                <TextInput style={inputstyle} placeholder='Enter your email' />
-                <TextInput style={inputstyle} placeholder='Enter your password' />
-                <TouchableOpacity style={bigButton}>
-                    <Text style={buttonText}>SIGN IN NOW</Text>
-                </TouchableOpacity>
-            </View>
-        )
-        const signUpJSX = (
-            <View>
-                <TextInput style={inputstyle} placeholder='Enter your name' />
-                <TextInput style={inputstyle} placeholder='Enter your email' />
-                <TextInput style={inputstyle} placeholder='Enter your Password' />
-                <TextInput style={inputstyle} placeholder='Re-enter your Password' />
-                <TouchableOpacity style={bigButton}>
-                    <Text style={buttonText}>SIGN UP NOW</Text>
-                </TouchableOpacity>
-            </View>
-        )
+       
         const {isSignIn} = this.state
-        const mainJSX = isSignIn ? signInJSX :signUpJSX
+        const mainJSX = isSignIn ? <SignIn/> : <SignUp/>
         return (
             <View style={container}>
                 <View style={icon1}>
@@ -126,25 +110,7 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 30,
         borderBottomRightRadius: 30
     },
-    inputstyle: {
-        height: 50,
-        backgroundColor: 'white',
-        marginBottom: 10,
-        borderRadius: 30,
-        paddingLeft: 30
-    },
-    bigButton: {
-        height: 50,
-        borderWidth: 1,
-        borderColor: 'white',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 30
-    },
-    buttonText: {
-        color: '#f5f5f5',
-        fontSize: 20
-    }
+   
 })
 
 // <TouchableOpacity onPress={()=>{this.props.navigation.navigate('Main')}}>
