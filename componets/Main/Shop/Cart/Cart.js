@@ -31,6 +31,8 @@ export default class Cart extends PureComponent {
         const { cartArray } = this.props
         const { container, styleDress, styleImage, stylecA3,
             styleNumber, styleA2, body, styleLast } = styles
+        const arrTotal = cartArray.map(e => e.product.price * e.quantity);
+        const total =arrTotal.length ? arrTotal.reduce((a,b) => a+b) : 0 ;
         return (
             <View style={container}>
                 <ScrollView style={body}>
@@ -52,7 +54,7 @@ export default class Cart extends PureComponent {
                             </View>
                             <View style={stylecA3}>
                                 <TouchableOpacity onPress={() =>this.removeProduct(cartItem.product.id)}>
-                                    <Text style={{ fontSize: 17 }}>X</Text>
+                                    <Text style={{ fontSize: 20 }}>X</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={() => { this.props.navigation.navigate('ProductDetail') }}>
                                     <Text style={{ color: '#f06292' }}>SHOW DETAILS</Text>
@@ -64,7 +66,7 @@ export default class Cart extends PureComponent {
                 </ScrollView>
 
                 <TouchableOpacity style={styleLast}>
-                    <Text> TOTAL 380$ CHECKOUT NOW</Text>
+                    <Text> TOTAL {total}$ CHECKOUT NOW</Text>
                 </TouchableOpacity>
             </View>
 
