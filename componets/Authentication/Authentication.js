@@ -4,14 +4,21 @@ import {
     Image, StyleSheet, TextInput
 } from 'react-native'
 
+import register from '../Api/register'
 import icBack from '../../media/appIcon/back_white.png'
 import iconLogo from '../../media/appIcon/ic_logo.png'
 
 export default class Authentication extends PureComponent {
     constructor(props){
         super(props)
-        this.state = {isSignIn: false}
+        this.state = {isSignIn: true}
     }
+
+    componentDidMount() {
+        register('long123','chinh long','123')
+        .then(res =>console.log(res))
+    }
+
     render() {
         const { icon1, iconStyle, styleTitle,
             inactiveStyle, activeStyle, buttonText,
