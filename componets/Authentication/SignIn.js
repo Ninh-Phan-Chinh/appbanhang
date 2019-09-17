@@ -3,6 +3,8 @@ import { Text, View,TouchableOpacity,StyleSheet,TextInput } from 'react-native'
 import signIn from '../Api/signIn';
 import CartsProduct from '../Api/CartsProduct'
 
+import saveToken from '../Api/saveToken'
+
 export default class SignIn extends PureComponent {
     constructor(props){
         super(props);
@@ -17,7 +19,8 @@ export default class SignIn extends PureComponent {
         signIn(email,password)
         .then(res => {
             CartsProduct.onSignIn(res.user);
-            this.props.goBackToMain()
+            this.props.goBackToMain();
+            saveToken(res.token)
         })
         .catch(err => console.log(err));
     }

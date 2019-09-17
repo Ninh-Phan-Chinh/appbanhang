@@ -2,15 +2,29 @@ import React, { PureComponent } from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
 import Drawer from 'react-native-drawer'
 
+import checkLogin from '../Api/checkLogin'
+import getToken from '../Api/getToken';
+import CartsProduct from '../Api/CartsProduct'
+
 import Menu from './Menu/Menu'
 import Shop from './Shop/Shop'
+
 export default class Main extends PureComponent {
+
+    componentDidMount() {
+        getToken()
+        .then(token => checkLogin(token))
+        .then(res => CartsProduct.onSignIn(res.user))
+        .catch(err => console.log('loi check login',err))
+    }
+
     closeControlPanel = () => {
         this._drawer.close()
     };
     openControlPanel = () => {
         this._drawer.open()
     };
+   
     render() {
         return (
             <Drawer

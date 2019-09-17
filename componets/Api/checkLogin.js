@@ -1,16 +1,16 @@
 import Api from '../Api/Api'
 
-const register = (email,name,password) =>(
-    fetch(`${Api}api/register.php`,
+const checkLogin = (token) =>(
+    fetch(`${Api}api/check_login.php`,
     {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json'
         },
-        body: JSON.stringify({email,name,password})
+        body: JSON.stringify({token})
     })
-    .then(res => res.text())
+    .then(res => res.json())
 );
 
-module.exports = register;
+module.exports = checkLogin;
