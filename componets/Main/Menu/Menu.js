@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity, StyleSheet, Image } from 'react-native'
 
 import profileIcon from '../../../media/temp/profile.png'
 import CartsProduct from '../../Api/CartsProduct'
+import saveToken from '../../Api/saveToken'
 
 export default class Menu extends PureComponent {
     constructor(props) {
@@ -11,8 +12,14 @@ export default class Menu extends PureComponent {
         CartsProduct.onSignIn = this.onSignIn.bind(this)
     }
     onSignIn(user) {
-        this.setState({ user})
+        this.setState({ user});
+        saveToken('');
     }
+
+    onSignOut() {
+        this.setState({user: null})
+    }
+
     render() {
 
         const { container, profile, buttonSignIn, userName,
@@ -48,7 +55,7 @@ export default class Menu extends PureComponent {
                         >
                             <Text style={textSignIn}>Change Info</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={btnSignInStyle}>
+                        <TouchableOpacity style={btnSignInStyle} onPress={this.onSignOut.bind(this)}>
                             <Text style={textSignIn}>Sign out</Text>
                         </TouchableOpacity>
                     </View>
