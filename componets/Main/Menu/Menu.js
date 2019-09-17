@@ -2,11 +2,16 @@ import React, { PureComponent } from 'react'
 import { Text, View, TouchableOpacity, StyleSheet, Image } from 'react-native'
 
 import profileIcon from '../../../media/temp/profile.png'
+import CartsProduct from '../../Api/CartsProduct'
 
 export default class Menu extends PureComponent {
     constructor(props) {
         super(props)
-        this.state = { isLogedIn: false }
+        this.state = { user: null };
+        CartsProduct.onSignIn = this.onSignIn.bind(this)
+    }
+    onSignIn(user) {
+        this.setState({ user})
     }
     render() {
 
@@ -24,11 +29,12 @@ export default class Menu extends PureComponent {
                 </TouchableOpacity>
             </View>
         );
+        const {user} = this.state
         const loginJSX = (
             <View>
 
                 <View style={loginContainer}>
-                    <Text style={userName}>Phan Chinh Ninh</Text>
+                    <Text style={userName}>{user ? user.name : ''}</Text>
                     <View style={{ marginBottom: 130 }}>
                         <TouchableOpacity
                             style={btnSignInStyle}
@@ -49,7 +55,7 @@ export default class Menu extends PureComponent {
                 </View>
             </View>
         )
-        const mainJSx = this.state.isLogedIn ? loginJSX : logoutJSX;
+        const mainJSx = this.state.user ? loginJSX : logoutJSX;
         return (
             <View style={container}>
                 <Image source={profileIcon} style={profile} />

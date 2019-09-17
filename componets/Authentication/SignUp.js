@@ -27,7 +27,7 @@ export default class SignUp extends PureComponent {
             'Notice',
             'Sign up successfully',
             [
-              {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+              {text: 'OK', onPress: this.props.gotoSignIn()}
             ],
             {cancelable: false},
           );
@@ -38,7 +38,7 @@ export default class SignUp extends PureComponent {
             'Notice',
             'Email has been used by other',
             [
-              {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+              {text: 'Ok', onPress: () => console.log('Ask me later pressed')},
             ],
             {cancelable: false},
           );

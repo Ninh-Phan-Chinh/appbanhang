@@ -18,20 +18,29 @@ export default class Authentication extends PureComponent {
         this.state = {isSignIn: true}
     }
 
+    gotoSignIn() {
+        this.setState({isSignIn: true});
+    }
+
     componentDidMount() {
         register('long123','chinh long','123')
         .then(res =>console.log(res))
     }
 
+    goBackToMain() {
+        const { navigation } = this.props;
+        navigation.navigate('Main');
+    }
+
     render() {
         const { icon1, iconStyle, styleTitle,
-            inactiveStyle, activeStyle, buttonText,
-            container, controlStyle, bigButton,
-            signInstyle, signUpStyle, inputstyle } = styles
+            inactiveStyle, activeStyle,
+            container, controlStyle, 
+            signInstyle, signUpStyle, } = styles
 
        
         const {isSignIn} = this.state
-        const mainJSX = isSignIn ? <SignIn/> : <SignUp/>
+        const mainJSX = isSignIn ? <SignIn goBackToMain = {this.goBackToMain.bind(this)}/> : <SignUp gotoSignIn={this.gotoSignIn.bind(this)}/>
         return (
             <View style={container}>
                 <View style={icon1}>
