@@ -46,7 +46,12 @@ export default class ProductDetail extends PureComponent {
                         <Text style = {txtbotton}>Material {material}</Text>
                         <View style={{flexDirection:'row'}}>
                         <Text style = {txtbotton}>Color {color}</Text>
-                        <View style={colorStyle}/>
+                        <View style={{ height:20,
+                                        width:20,
+                                        borderRadius:10,
+                                        borderWidth:1,
+                                        borderColor:'#e91e63',
+                                        backgroundColor: color.toLowerCase()}}/>
                         </View>                      
                     </View>
                 </View>

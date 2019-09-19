@@ -38,7 +38,7 @@ export default class SearchView extends PureComponent {
                             <View style={styleTouopcity}>
                                 <Text style={styleTextColor}>Color Gainsboro</Text>
                                 <View style={colorStyle}/>
-                                <TouchableOpacity>
+                                <TouchableOpacity onPress={()=>{this.props.navigation.navigate('ProductDetail')}}>
                                     <Text style={styleShow}>SHOW DETAILS</Text>
                                 </TouchableOpacity>
                             </View>

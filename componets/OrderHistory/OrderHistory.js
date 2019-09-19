@@ -9,6 +9,9 @@ export default class OrderHistory extends PureComponent {
                o1,o2,styleTextO1} =styles
         return (
             <ScrollView style={container}>
+                 {/* <TouchableOpacity onPress={() => { this.props.navigation.navigate('ListProduct') }}>
+                                    <Text style={{ color: '#f06292' }}>SHOW DETAILS</Text>
+                                </TouchableOpacity> */}
                 <View style = {header}>
                     <View/>
                     <Text style={styleText}>Order History</Text>

@@ -4,7 +4,6 @@ import getListProduct from '../../../Api/getListProduct'
 
 import Api from '../../../Api/Api'
 
-import iconParty1 from '../../../../media/appIcon/party.jpeg'
 import iconBack from '../../../../media/appIcon/back.png'
 export default class ListProduct extends PureComponent {
     constructor(props) {
@@ -25,6 +24,10 @@ export default class ListProduct extends PureComponent {
             this.setState({listProducts: this.arr})
         })
         .catch(err => console.log(err))
+    }
+
+    navigateDetail(productItem) {
+        this.props.navigation.navigate('ProductDetail', { productItem });
     }
 
     render() {
@@ -51,13 +54,16 @@ export default class ListProduct extends PureComponent {
                                 <View style={informationStyle}>
                                     <Text style={styleNameSp1}>{item.name}</Text>
                                     <Text style={styleMoney}>{item.price}$</Text>
-                                    <Text style={materialStyle}>Material silk</Text>
+                                    <Text style={materialStyle}>Material {item.material}</Text>
                                     <View style={styleTouopcity}>
-                                        <Text style={styleTextColor}>Color Gainsboro</Text>
-                                        <View style={colorStyle} />
-                                        <TouchableOpacity onPress = {()=>{
-                                            this.props.navigation.navigate('ProductDetail')
-                                        }}>
+                                        <Text style={styleTextColor}>Color {item.color}</Text>
+                                        <View style={{height: 20,
+                                                    width: 20,
+                                                    borderRadius: 10,
+                                                    backgroundColor: item.color.toLowerCase(),
+                                                    marginRight: 5,
+                                                    marginLeft: 5}} />
+                                        <TouchableOpacity onPress={() => this.navigateDetail(item)}>
                                             <Text style={styleShow}>SHOW DETAILS</Text>
                                         </TouchableOpacity>
                                     </View>
@@ -87,30 +93,6 @@ export default class ListProduct extends PureComponent {
         )
     }
 }
-
-{/* <ScrollView style = {inContainer}>
-                    <View style={header}>
-                        <TouchableOpacity onPress={()=>{this.props.navigation.goBack()}}>
-                        <Image source = {iconBack} style={iconStyle}/>
-                        </TouchableOpacity>
-                        <Text style={textIcon}>{name}</Text>                     
-                    </View>
-                    <View style={styleBody}>
-                        <Image source = {iconParty1} style = {styleParty}/>
-                        <View style={informationStyle}>
-                            <Text style={styleNameSp1}>aldsajd</Text>
-                            <Text style={styleMoney}>117$</Text>
-                            <Text style={materialStyle}>Material silk</Text>
-                            <View style={styleTouopcity}>
-                                <Text style={styleTextColor}>Color Gainsboro</Text>
-                                <View style={colorStyle}/>
-                                <TouchableOpacity>
-                                    <Text style={styleShow}>SHOW DETAILS</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    </View>                
-                </ScrollView> */}
 
 const styles = StyleSheet.create({
     constainer: {
@@ -188,3 +170,6 @@ const styles = StyleSheet.create({
         color: '#ec407a'
     }
 })
+
+
+

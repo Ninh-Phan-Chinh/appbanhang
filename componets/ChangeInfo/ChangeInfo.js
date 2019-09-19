@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { Text,Alert, View,TouchableOpacity,Image,StyleSheet,TextInput } from 'react-native'
 
 import iconBacks from '../../media/appIcon/backs.png'
@@ -6,7 +6,7 @@ import getToken from '../Api/getToken'
 import changeInfoApi from '../Api/changInfo'
 import CartsProduct from '../Api/CartsProduct'
 
-export default class ChangeInfo extends PureComponent {
+export default class ChangeInfo extends Component {
     constructor(props){
         super(props)
         const { name, address, phone } = this.props.navigation.getParam('user')
