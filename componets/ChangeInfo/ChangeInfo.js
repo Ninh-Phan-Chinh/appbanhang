@@ -1,49 +1,82 @@
 import React, { PureComponent } from 'react'
-import { Text, View,TouchableOpacity,Image,StyleSheet,TextInput } from 'react-native'
+import { Text,Alert, View,TouchableOpacity,Image,StyleSheet,TextInput } from 'react-native'
 
 import iconBacks from '../../media/appIcon/backs.png'
+import getToken from '../Api/getToken'
+import changeInfoApi from '../Api/changInfo'
+import CartsProduct from '../Api/CartsProduct'
 
 export default class ChangeInfo extends PureComponent {
     constructor(props){
         super(props)
+        const { name, address, phone } = this.props.navigation.getParam('user')
         this.state = {
-            txtName: 'Chinh Ninh Phan',
-            txtAddres: '67 Luy Ban Bich',
-            txtPhone: '0352804047'
+            txtName: name,
+            txtAddres: address,
+            txtPhone: phone
         }
+    }
+
+    goBackToMain() {
+        const {navigation} = this.props;
+        navigation.goBack()
+    }
+
+    alertSucces() {
+        Alert.alert(
+            'Notice',
+            'update info successfully',
+            [
+              {text: 'Ok', onPress: this.goBackToMain.bind(this)},
+            ],
+            {cancelable: false},
+          );
+    }
+
+    change() {
+        const {txtName,txtAddress,txtPhone} = this.state;
+        getToken()
+        .then(token => changeInfoApi(token,txtName,txtPhone,txtAddress))
+        .then(user => {
+            this.alertSucces();
+            CartsProduct.onSignIn(user)
+        })
+        .catch(err => console.log(err))
     }
     
     render() {
         const {textButton,styleButton,container,header,styleIcon,styleText,textInput,body} = styles
+        const {txtName,txtAddres,txtPhone} = this.state
         return (
             <View style={container}>
                 <View style = {header}>
                     <View/>
                     <Text style={styleText}>User Infomation</Text>
-                    <TouchableOpacity onPress={()=>{this.props.navigation.goBack()}}>
+                    <TouchableOpacity onPress={this.goBackToMain.bind(this)}>
                         <Image source={iconBacks} style={styleIcon}/>
                     </TouchableOpacity>
                 </View>
                 <View style={body}>
+                    <TextInput 
+                        style ={textInput}
+                        placeholder = 'Enter your name'
+                        autoCapitalize = 'none'
+                        value = {txtName}
+                        onChangeText = {txtName => this.setState({...this.state,txtName})}
+                    />
                     <TextInput style ={textInput}
-                                placeholder = 'Enter your name'
+                                placeholder = 'Enter your addres'
                                 autoCapitalize = 'none'
-                                value = {this.state.txtName}
-                                onChangeText = {txtName => this.setState({...this.state,txtName})}
+                                value = {txtAddres}
+                                onChangeText = {txtAddres => this.setState({...this.state,txtAddres})}
                     />
                     <TextInput style ={textInput}
-                    placeholder = 'Enter your addres'
-                    autoCapitalize = 'none'
-                    value = {this.state.txtAddres}
-                    onChangeText = {txtName => this.setState({...this.state,txtName})}
+                                placeholder = 'Enter your phone number'
+                                autoCapitalize = 'none'
+                                value = {txtPhone}
+                                onChangeText = {txtPhone => this.setState({...this.state,txtPhone})}
                     />
-                    <TextInput style ={textInput}
-                    placeholder = 'Enter your phone number'
-                    autoCapitalize = 'none'
-                    value = {this.state.txtPhone}
-                    onChangeText = {txtName => this.setState({...this.state,txtName})}
-                    />
-                    <TouchableOpacity style = {styleButton}>
+                    <TouchableOpacity style = {styleButton} onPress ={ this.change.bind(this)}>
                         <Text style ={textButton}>CHANGE YOUR INFOMATION</Text>
                     </TouchableOpacity>
                 </View>

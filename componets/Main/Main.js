@@ -5,6 +5,7 @@ import Drawer from 'react-native-drawer'
 import checkLogin from '../Api/checkLogin'
 import getToken from '../Api/getToken';
 import CartsProduct from '../Api/CartsProduct'
+import refreshToken from '../Api/refreshToken'
 
 import Menu from './Menu/Menu'
 import Shop from './Shop/Shop'
@@ -15,7 +16,7 @@ export default class Main extends PureComponent {
         getToken()
         .then(token => checkLogin(token))
         .then(res => CartsProduct.onSignIn(res.user))
-        .catch(err => console.log('loi check login',err))
+        .catch(err => console.log('loi check login',err));
     }
 
     closeControlPanel = () => {

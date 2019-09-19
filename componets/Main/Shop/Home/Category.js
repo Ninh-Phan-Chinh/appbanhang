@@ -12,29 +12,34 @@ import partyIcon from '../../../../media/temp/party.jpg'
 const { height, width } = Dimensions.get('window')
 
 export default class Collection extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.goToListProduct = this.goToListProduct.bind(this);
+    }
+    goToListProduct(category) {
+        this.props.navigation.navigate('ListProduct',{category})
+    }
     render() {
-        const {types} = this.props
+        const { types } = this.props
         const { wraper, textStyle, imagestyle, textImage } = styles
+        const swiper = (
+            <Swiper >
+                {types.map(e => (
+                    <TouchableOpacity onPress={() => this.goToListProduct(e)} key={e.id}>
+                        <ImageBackground resizeMode='stretch' source={{ uri: `${Api}api/images/type/${e.image}` }} style={imagestyle} >
+                            <Text style={textImage}>{e.name}</Text>
+                        </ImageBackground >
+                    </TouchableOpacity>
+                ))}
+            </Swiper>)
         return (
             <View style={wraper}>
                 <View style={{ flex: 1 }}>
                     <Text style={textStyle}>LIST OF CATEGORY</Text>
                 </View>
                 <View style={{ flex: 5, }}>
-                    <Swiper >
-                        {types.map(e=>(
-                            <TouchableOpacity onPress={() => {
-                                this.props.navigation.navigate('ListProduct')
-                            }} key={e.id}>
-                                <ImageBackground resizeMode='stretch' source={{uri:`${Api}api/images/type/${e.image}`}} style={imagestyle} >
-                                    <Text style={textImage}>{e.name}</Text>
-                                </ImageBackground >
-                            </TouchableOpacity>
-                        ))} 
-                    </Swiper> 
-
+                    {swiper}
                 </View>
-
 
             </View>
         )

@@ -13,11 +13,16 @@ export default class Menu extends PureComponent {
     }
     onSignIn(user) {
         this.setState({ user});
-        saveToken('');
     }
 
     onSignOut() {
         this.setState({user: null})
+        saveToken('');
+    }
+
+    goToChangeInfo() {
+        const {navigation} = this.props;
+        navigation.navigate('ChangeInfo', {user: this.state.user})
     }
 
     render() {
@@ -51,7 +56,7 @@ export default class Menu extends PureComponent {
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={btnSignInStyle}
-                            onPress={() => { this.props.navigation.navigate('ChangeInfo') }}
+                            onPress={this.goToChangeInfo.bind(this)}
                         >
                             <Text style={textSignIn}>Change Info</Text>
                         </TouchableOpacity>
