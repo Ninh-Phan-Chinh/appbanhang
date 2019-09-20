@@ -20,7 +20,7 @@ export default class Header extends PureComponent {
     onSearch() {
         const {txtSearch} = this.state;
         search(txtSearch)
-        .then(arrProduct => console.log(arrProduct))
+        .then(arrProduct =>CartsProduct.setSearchArray(arrProduct))
         .catch(err => console.log(err))
     }
 
