@@ -114,7 +114,7 @@ export default class Shop extends PureComponent {
                         renderIcon={() => <Image source={searchS} style={iconStyle} />}
                         renderSelectedIcon={() => <Image source={search} style={iconStyle} />}
                         onPress={() => this.setState({ selectedTab: 'Search' })}>
-                        <Search />
+                        <Search navigation = {this.props.navigation}/>
                     </TabNavigator.Item>
                     <TabNavigator.Item
                         selected={selectedTab === 'Contact'}

@@ -23,9 +23,8 @@ export default class Cart extends PureComponent {
         CartsProduct.removeProduct(id);
     }
 
-    gotoDetail(productItem) {
-        const { navigation } = this.props;
-        navigation.navigate('ProductDetail',{productItem});
+    navigateDetail(productItem) {
+        this.props.navigation.navigate('ProductDetail', { productItem });
     }
     render() {
         const { cartArray } = this.props
@@ -56,7 +55,7 @@ export default class Cart extends PureComponent {
                                 <TouchableOpacity onPress={() =>this.removeProduct(cartItem.product.id)}>
                                     <Text style={{ fontSize: 20 }}>X</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={()=>this.gotoDetail(cartItem)}>
+                                <TouchableOpacity onPress={()=>this.navigateDetail(cartItem.product)}>
                                     <Text style={{ color: '#f06292' }}>SHOW DETAILS</Text>
                                 </TouchableOpacity>
                             </View>

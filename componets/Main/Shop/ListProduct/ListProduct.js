@@ -31,7 +31,7 @@ export default class ListProduct extends PureComponent {
         .catch(err => console.log(err))
     }
 
-    navigateDetail(productItem) {
+    goToDetail(productItem) {
         this.props.navigation.navigate('ProductDetail', { productItem });
     }
 
@@ -68,7 +68,7 @@ export default class ListProduct extends PureComponent {
                                                     backgroundColor: item.color.toLowerCase(),
                                                     marginRight: 5,
                                                     marginLeft: 5}} />
-                                        <TouchableOpacity onPress={() => this.navigateDetail(item)}>
+                                        <TouchableOpacity onPress={() => this.goToDetail(item)}>
                                             <Text style={styleShow}>SHOW DETAILS</Text>
                                         </TouchableOpacity>
                                     </View>

@@ -22,6 +22,11 @@ export default class SearchView extends PureComponent {
         this.setState({ listProduct: arrPoduct })
     }
 
+    goToDetail(productItem) {
+        this.props.navigation.navigate('ProductDetail', { productItem });
+    }
+
+
     render() {
         const { container, styleBody, styleParty, styleNameSp1, styleMoney
             , materialStyle, styleTouopcity, styleTextColor, colorStyle, styleShow, informationStyle } = styles
@@ -46,7 +51,7 @@ export default class SearchView extends PureComponent {
                                         marginRight: 5,
                                         marginLeft: 5
                                     }} />
-                                    <TouchableOpacity>
+                                    <TouchableOpacity onPress = {() => this.goToDetail(item)}>
                                         <Text style={styleShow}>SHOW DETAILS</Text>
                                     </TouchableOpacity>
                                 </View>
