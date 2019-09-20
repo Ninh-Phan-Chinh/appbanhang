@@ -52,6 +52,8 @@ export default class Shop extends PureComponent {
     }
 
     addProductToCart(product) {
+        const isExist = this.state.cartArray.some(e => e.product.id === product.id)
+        if(isExist) return false;
         this.setState({ cartArray: this.state.cartArray.concat({ product, quantity: 1 }) },
             () => SaveCart(this.state.cartArray)
         )
