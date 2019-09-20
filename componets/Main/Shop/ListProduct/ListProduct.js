@@ -5,6 +5,11 @@ import getListProduct from '../../../Api/getListProduct'
 import Api from '../../../Api/Api'
 
 import iconBack from '../../../../media/appIcon/back.png'
+
+function toTitleCase(str) {
+    return str.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+}
+
 export default class ListProduct extends PureComponent {
     constructor(props) {
         super(props);
@@ -52,7 +57,7 @@ export default class ListProduct extends PureComponent {
                             <View style={styleBody}>
                                 <Image source={{uri: `${Api}api/images/product/${item.images[0]}`}} style={styleParty} />
                                 <View style={informationStyle}>
-                                    <Text style={styleNameSp1}>{item.name}</Text>
+                                    <Text style={styleNameSp1}>{toTitleCase(item.name)}</Text>
                                     <Text style={styleMoney}>{item.price}$</Text>
                                     <Text style={materialStyle}>Material {item.material}</Text>
                                     <View style={styleTouopcity}>

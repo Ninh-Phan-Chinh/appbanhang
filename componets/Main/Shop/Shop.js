@@ -34,6 +34,7 @@ export default class Shop extends PureComponent {
         CartsProduct.incrquantity = this.incrquantity.bind(this);
         CartsProduct.decrQuantity = this.decrQuantity.bind(this);
         CartsProduct.removeProduct = this.removeProduct.bind(this);
+        CartsProduct.gotoSearch = this.gotosearch.bind(this);
     }
 
     componentDidMount() {
@@ -44,6 +45,10 @@ export default class Shop extends PureComponent {
             });
         GetCart()
             .then(cartArray => this.setState({ cartArray }))
+    }
+
+    gotosearch() {
+        this.setState({ selectedTab: 'Search'})
     }
 
     addProductToCart(product) {

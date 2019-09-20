@@ -4,9 +4,25 @@ import { Text, View, TouchableOpacity, Dimensions, Image, TextInput, StyleSheet 
 import MenuIcon from '../../../media/appIcon/ic_menu.png'
 import LogoIcon from '../../../media/appIcon/ic_logo.png'
 
+import CartsProduct from '../../Api/CartsProduct'
+import search from '../../Api/searchProduct'
+
 const height = Dimensions.get('window').height
 
 export default class Header extends PureComponent {
+    constructor(props){
+        super(props);
+        this.state = {
+            txtSearch: []
+        }
+    }
+
+    onSearch() {
+        const {txtSearch} = this.state;
+        search(txtSearch)
+        .then(arrProduct => console.log(arrProduct))
+        .catch(err => console.log(err))
+    }
 
     render() {
         const { wrapper, icon1, textInput, iconStyle, styleTitle } = styles
@@ -28,6 +44,9 @@ export default class Header extends PureComponent {
                 <View >
                     <TextInput style={textInput}
                         placeholder='What do you want to buy?'
+                        onChangeText = {text => this.setState({txtSearch: text})}
+                        onFocus={()=>CartsProduct.gotoSearch()}
+                        onSubmitEditing={this.onSearch.bind(this)}
                     />
                 </View>
             </View>
