@@ -9,49 +9,54 @@ import Authentication from '../Authentication/Authentication'
 import Main from '../Main/Main'
 import ProductDetail from '../Main/Shop/ProductDetail/ProductDetail'
 import ListProduct from '../Main/Shop/ListProduct/ListProduct'
+import refreshToken from '../Api/refreshToken'
 
-
-const Appnavigator = createStackNavigator(
-    {
-        Authentication: { screen: Authentication },
-        OrderHistory: { screen: OrderHistory },
-        Main: { screen: Main },
-        ChangeInfo: { screen: ChangeInfo },
-        ProductDetail: {screen: ProductDetail, params: this.props },
-        ListProduct: {screen: ListProduct}
-    },
-    {
-        initialRouteName: 'Main',
-        transitionConfig: ()=>fromLeft(500),
-        headerMode: 'none'
+export default class A extends Component {
+    componentDidMount() {
+        setInterval(refreshToken,5000);
     }
-)
+    render() {
+        const Appnavigator = createStackNavigator(
+            {
+                Authentication: { screen: Authentication},
+                OrderHistory: { screen: OrderHistory },              
+                ChangeInfo: { screen: ChangeInfo },
+                ProductDetail: {screen: ProductDetail},
+                ListProduct: {screen: ListProduct},
+                Main: { screen: Main }
+            },
+            {
+                initialRouteName: 'Main',
+                transitionConfig: ()=>fromLeft(500),
+                headerMode: 'none'
+            }
+        )
+        const A = createAppContainer(Appnavigator)
+        return (
+            <A/>
+        )
+    }
+}
 
-export default createAppContainer(Appnavigator);
-
-// export default class A extends Component {
-//     render() {
-//         const Appnavigator = createStackNavigator(
-//             {
-//                 Authentication: { screen: Authentication},
-//                 OrderHistory: { screen: OrderHistory },              
-//                 ChangeInfo: { screen: ChangeInfo },
-//                 ProductDetail: {screen: ProductDetail},
-//                 ListProduct: {screen: ListProduct},
-//                 Main: { screen: Main }
-//             },
-//             {
-//                 initialRouteName: 'Main',
-//                 transitionConfig: ()=>fromLeft(500),
-//                 headerMode: 'none'
-//             }
-//         )
-//         const A = createAppContainer(Appnavigator)
-//         return (
-//             <A/>
-//         )
+// const Appnavigator = createStackNavigator(
+//     {
+//         Authentication: { screen: Authentication },
+//         OrderHistory: { screen: OrderHistory },
+//         Main: { screen: Main },
+//         ChangeInfo: { screen: ChangeInfo },
+//         ProductDetail: {screen: ProductDetail, params: this.props },
+//         ListProduct: {screen: ListProduct}
+//     },
+//     {
+//         initialRouteName: 'Main',
+//         transitionConfig: ()=>fromLeft(500),
+//         headerMode: 'none'
 //     }
-// }
+// )
+
+// export default createAppContainer(Appnavigator);
+
+
 
 
 

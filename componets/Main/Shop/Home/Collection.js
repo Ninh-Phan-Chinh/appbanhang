@@ -1,9 +1,14 @@
 import React, { PureComponent } from 'react'
-import { Text, View,Image,StyleSheet,Dimensions } from 'react-native'
+import { Text, View,Image,StyleSheet,Dimensions,TouchableOpacity } from 'react-native'
 import bannerImage from '../../../../media/temp/banner.jpg'
 const {height,width} = Dimensions.get('window')
 
 export default class Collection extends PureComponent {
+
+    goToListProduct(category) {
+        this.props.navigation.navigate('ListProduct',{category: {name: 'SPRING COLLECTION', id: 4}})
+    }
+
     render() {
         const {wraper,textStyle,imagestyle} = styles
         return (
@@ -11,9 +16,9 @@ export default class Collection extends PureComponent {
                 <View style = {{flex: 1}}>
                 <Text style={textStyle}>SPRING COLLECTION</Text>
                 </View>
-                <View style = {{flex: 4}}>
+                <TouchableOpacity style = {{flex: 4}} onPress = {this.goToListProduct.bind(this)}>
                 <Image source = {bannerImage} style = {imagestyle} />
-                </View>
+                </TouchableOpacity>
             </View>
         )
     }

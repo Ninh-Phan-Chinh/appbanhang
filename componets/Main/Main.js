@@ -5,7 +5,6 @@ import Drawer from 'react-native-drawer'
 import checkLogin from '../Api/checkLogin'
 import getToken from '../Api/getToken';
 import CartsProduct from '../Api/CartsProduct'
-import refreshToken from '../Api/refreshToken'
 
 import Menu from './Menu/Menu'
 import Shop from './Shop/Shop'

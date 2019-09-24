@@ -1,8 +1,8 @@
 import Api from '../Api/Api'
-
+import getToken from './getToken'
 import saveToken from '../Api/saveToken'
 
-const refreshToken = (token) => {
+const getNewToken = (token) => (
     fetch(`${Api}api/refresh_token.php`,
     {
         method: 'POST',
@@ -13,8 +13,19 @@ const refreshToken = (token) => {
         body: JSON.stringify({token})
     })
     .then(res => res.text())
-    .then(tokenToSave => saveToken(tokenToSave))
-
+)
+const refreshToken = async () => {
+    try {
+        const token = getToken();
+        if (token === '' || token === 'ToKEN_KHONG_HOP_LE') {
+            console.log('chua co token')
+        }
+        const newToken = await getNewToken(token);
+        await saveToken(newToken);
+        console.log('TOKEN MOI:' + newToken)
+    } catch (c) {
+        console.log(e)
+    }
 };
 
 export default refreshToken;

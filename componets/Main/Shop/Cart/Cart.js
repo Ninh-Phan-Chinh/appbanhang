@@ -5,6 +5,8 @@ import iconParty1 from '../../../../media/appIcon/party.jpeg'
 
 import Api from '../../../Api/Api'
 import CartsProduct from '../../../Api/CartsProduct'
+import sendOrder from '../../../Api/sendOrder'
+import getToken from '../../../Api/getToken'
 
 function toTitleCase(str) {
     return str.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
@@ -26,6 +28,25 @@ export default class Cart extends PureComponent {
     navigateDetail(productItem) {
         this.props.navigation.navigate('ProductDetail', { productItem });
     }
+
+    async onSendOrder() {
+        try {
+            const token  = await getToken();
+            const arrayDetail = this.props.cartArray.map(cartItem =>({
+                id: cartItem.product.id, 
+                quantity: cartItem.quantity
+            }))
+            const kq = await sendOrder(token, arrayDetail);
+            if (kq === 'THEM_THANH_CONG'){
+                console.log('THEM THANH CONG')
+            } else {
+                console.log( 'them that bai')
+            }
+        }catch (e) {
+            console.log(e);
+        }
+    }
+
     render() {
         const { cartArray } = this.props
         const { container, styleDress, styleImage, stylecA3,
@@ -64,7 +85,9 @@ export default class Cart extends PureComponent {
 
                 </ScrollView>
 
-                <TouchableOpacity style={styleLast}>
+                <TouchableOpacity style={styleLast}
+                        onPress = {this.onSendOrder.bind(this)}
+                >
                     <Text> TOTAL {total}$ CHECKOUT NOW</Text>
                 </TouchableOpacity>
             </View>
