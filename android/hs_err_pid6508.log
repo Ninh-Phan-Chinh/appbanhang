@@ -42,7 +42,7 @@ C2:2765274 9705       4       org.gradle.internal.service.DefaultServiceRegistry
 ---------------  P R O C E S S  ---------------
 
 Java Threads: ( => current thread )
-  0x000000001ae6d800 JavaThread "Cache worker for file hash cache (C:\Users\long\Desktop\project\android\saochepapp8\android\.gradle\5.4.1\fileHashes)" [_thread_blocked, id=10680, stack(0x0000000022c20000,0x0000000022d20000)]
+  0x000000001ae6d800 JavaThread "Cache worker for file hash cache (C:\Users\long\Desktop\project\android\appbanhang\android\.gradle\5.4.1\fileHashes)" [_thread_blocked, id=10680, stack(0x0000000022c20000,0x0000000022d20000)]
   0x000000001ae6c800 JavaThread "Thread-35" [_thread_blocked, id=2584, stack(0x0000000022b20000,0x0000000022c20000)]
   0x000000001ae6c000 JavaThread "Stdin handler" [_thread_blocked, id=8104, stack(0x0000000022a20000,0x0000000022b20000)]
   0x000000001ae6a800 JavaThread "Asynchronous log dispatcher for DefaultDaemonConnection: socket connection from /127.0.0.1:50417 to /127.0.0.1:51094" [_thread_blocked, id=12080, stack(0x0000000022920000,0x0000000022a20000)]
@@ -329,7 +329,7 @@ Launcher Type: SUN_STANDARD
 
 Environment Variables:
 JAVA_HOME=C:\Program Files\Java\jdk1.8.0_221
-CLASSPATH=C:\Users\long\Desktop\project\android\saochepapp8\android\\gradle\wrapper\gradle-wrapper.jar
+CLASSPATH=C:\Users\long\Desktop\project\android\appbanhang\android\\gradle\wrapper\gradle-wrapper.jar
 PATH=C:\Python27\;C:\Python27\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Program Files\Java\jdk1.8.0_221\bin;C:\Program Files (x86)\Yarn\bin\;C:\Python27\;C:\Python27\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Program Files\Java\jdk1.8.0_221\bin;C:\Users\long\AppData\Local\Microsoft\WindowsApps;C:\Users\long\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\long\AppData\Roaming\npm;C:\Users\long\AppData\Local\Android\Sdk\platform-tools;C:\Users\long\AppData\Local\Yarn\bin;C:\Users\long\AppData\Local\Programs\Git\cmd
 USERNAME=long
 OS=Windows_NT

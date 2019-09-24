@@ -1,4 +1,4 @@
-package com.saochepapp8;
+package com.appbanhang;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "saochepapp8";
+        return "appbanhang";
     }
 }
