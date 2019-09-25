@@ -17,7 +17,7 @@ const getNewToken = (token) => (
 const refreshToken = async () => {
     try {
         const token = getToken();
-        if (token === '' || token === 'ToKEN_KHONG_HOP_LE') {
+        if (token === '' || token === 'TOKEN_KHONG_HOP_LE') {
             console.log('chua co token')
         }
         const newToken = await getNewToken(token);

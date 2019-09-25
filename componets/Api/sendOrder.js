@@ -1,6 +1,6 @@
 import Api from '../Api/Api'
 
-const sendOrder = (token,arratDetail) =>(
+const sendOrder = (token,arrayDetail) =>(
     fetch(`${Api}api/cart.php`,
     {
         method: 'POST',
@@ -8,7 +8,7 @@ const sendOrder = (token,arratDetail) =>(
             'Content-Type': 'application/json',
             Accept: 'application/json'
         },
-        body: JSON.stringify({token,arratDetail})
+        body: JSON.stringify({token,arrayDetail})
     })
     .then(res => res.text())
 );

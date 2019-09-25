@@ -1,7 +1,7 @@
 import Api from '../Api/Api'
 
 const changeInfo = (token, name,phone, address) =>(
-    fetch(`${Api}api/check_login.php`,
+    fetch(`${Api}api/change_info.php`,
     {
         method: 'POST',
         headers: {

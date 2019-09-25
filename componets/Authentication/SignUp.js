@@ -38,7 +38,7 @@ export default class SignUp extends PureComponent {
             'Notice',
             'Email has been used by other',
             [
-              {text: 'Ok', onPress: () => console.log('Ask me later pressed')},
+            //   {text: 'Ok', onPress: () => console.log('Ask me later pressed')},
             ],
             {cancelable: false},
           );

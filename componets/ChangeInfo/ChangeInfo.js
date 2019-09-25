@@ -33,15 +33,16 @@ export default class ChangeInfo extends Component {
           );
     }
 
-    change() {
-        const {txtName,txtAddress,txtPhone} = this.state;
+    change() { 
+        const {txtName,txtAddres,txtPhone} = this.state;
+        console.log(txtName)
         getToken()
-        .then(token => changeInfoApi(token,txtName,txtPhone,txtAddress))
+        .then(token => changeInfoApi(token,txtName,txtPhone,txtAddres))
         .then(user => {
             this.alertSucces();
             CartsProduct.onSignIn(user)
         })
-        .catch(err => console.log(err))
+        // .catch(err => console.log(err))
     }
     
     render() {

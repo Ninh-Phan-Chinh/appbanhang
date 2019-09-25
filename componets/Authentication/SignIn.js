@@ -22,7 +22,7 @@ export default class SignIn extends PureComponent {
             this.props.goBackToMain();
             saveToken(res.token)
         })
-        .catch(err => console.log(err));
+        // .catch(err => console.log(err));
     }
 
     render() {

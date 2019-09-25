@@ -42,8 +42,8 @@ export default class OrderHistory extends PureComponent {
                         <View style={o2}>
                             <Text style={{ color: '#00bcd4' }}>ORD{e.id}</Text>
                             <Text style={{ color: '#f48fb1' }}>{e.date_order}</Text>
-                            <Text style={{ color: '#00bcd4' }}>Pending</Text>
-                            <Text style={{ color: '#e91e63' }}>400$</Text>
+                            <Text style={{ color: '#00bcd4' }}>{e.status ? 'Completed' : 'Pending'}</Text>
+                            <Text style={{ color: '#e91e63' }}>{e.total}$</Text>
                         </View>
                     </View>
                 ))}

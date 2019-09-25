@@ -13,7 +13,7 @@ import refreshToken from '../Api/refreshToken'
 
 export default class A extends Component {
     componentDidMount() {
-        setInterval(refreshToken,5000);
+        // setInterval(refreshToken,30000);
     }
     render() {
         const Appnavigator = createStackNavigator(

@@ -1,3 +1,3 @@
 
-const Api = 'http://192.168.1.3/'
+const Api = 'http://192.168.1.7/'
 export default Api

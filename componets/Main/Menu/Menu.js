@@ -13,6 +13,7 @@ export default class Menu extends PureComponent {
     }
     onSignIn(user) {
         this.setState({ user});
+       
     }
 
     onSignOut() {

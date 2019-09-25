@@ -22,10 +22,10 @@ export default class Authentication extends PureComponent {
         this.setState({isSignIn: true});
     }
 
-    componentDidMount() {
-        register('long123','chinh long','123')
-        .then(res =>console.log(res))
-    }
+    // componentDidMount() {
+    //     register('long123','chinh long','123')
+    //     // .then(res =>console.log(res))
+    // }
 
     goBackToMain() {
         const { navigation } = this.props;
