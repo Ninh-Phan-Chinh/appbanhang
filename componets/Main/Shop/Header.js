@@ -10,7 +10,7 @@ import search from '../../Api/searchProduct'
 const height = Dimensions.get('window').height
 
 export default class Header extends PureComponent {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             txtSearch: []
@@ -18,10 +18,10 @@ export default class Header extends PureComponent {
     }
 
     onSearch() {
-        const {txtSearch} = this.state;
+        const { txtSearch } = this.state;
         search(txtSearch)
-        .then(arrProduct =>CartsProduct.setSearchArray(arrProduct))
-        .catch(err => console.log(err))
+            .then(arrProduct => CartsProduct.setSearchArray(arrProduct))
+            .catch(err => console.log(err))
     }
 
     render() {
@@ -44,8 +44,8 @@ export default class Header extends PureComponent {
                 <View >
                     <TextInput style={textInput}
                         placeholder='What do you want to buy?'
-                        onChangeText = {text => this.setState({txtSearch: text})}
-                        onFocus={()=>CartsProduct.gotoSearch()}
+                        onChangeText={text => this.setState({ txtSearch: text })}
+                        onFocus={() => CartsProduct.gotoSearch()}
                         onSubmitEditing={this.onSearch.bind(this)}
                     />
                 </View>
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         width: 25, height: 25
     },
     styleTitle: {
-        color: 'white', fontSize: 25
+        color: 'white', fontSize: 22
     }
 })
 

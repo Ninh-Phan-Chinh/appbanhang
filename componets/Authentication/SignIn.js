@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react'
-import { Text, View,TouchableOpacity,StyleSheet,TextInput } from 'react-native'
+import { Text, View, TouchableOpacity, StyleSheet, TextInput } from 'react-native'
 import signIn from '../Api/signIn';
 import CartsProduct from '../Api/CartsProduct'
 
 import saveToken from '../Api/saveToken'
 
 export default class SignIn extends PureComponent {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             email: '',
@@ -15,32 +15,32 @@ export default class SignIn extends PureComponent {
     }
 
     onSignIn() {
-        const {email,password} = this.state;
-        signIn(email,password)
-        .then(res => {
-            CartsProduct.onSignIn(res.user);
-            this.props.goBackToMain();
-            saveToken(res.token)
-        })
-        // .catch(err => console.log(err));
+        const { email, password } = this.state;
+        signIn(email, password)
+            .then(res => {
+                CartsProduct.onSignIn(res.user);
+                this.props.goBackToMain();
+                saveToken(res.token)
+            })
+            .catch();
     }
 
     render() {
-        const {email, password} = this.state
-        const {  buttonText,bigButton,inputstyle} =styles
+        const { email, password } = this.state
+        const { buttonText, bigButton, inputstyle } = styles
         return (
             <View>
-                <TextInput 
-                    style={inputstyle} 
-                    placeholder='Enter your email' 
-                    value ={email}
-                    onChangeText={text => this.setState({email: text})}
+                <TextInput
+                    style={inputstyle}
+                    placeholder='Enter your email'
+                    value={email}
+                    onChangeText={text => this.setState({ email: text })}
                 />
-                <TextInput 
-                    style={inputstyle} 
-                    placeholder='Enter your password' 
-                    value = {password}
-                    onChangeText = {text => this.setState({password: text})}
+                <TextInput
+                    style={inputstyle}
+                    placeholder='Enter your password'
+                    value={password}
+                    onChangeText={text => this.setState({ password: text })}
                     secureTextEntry
                 />
                 <TouchableOpacity style={bigButton} onPress={this.onSignIn.bind(this)}>

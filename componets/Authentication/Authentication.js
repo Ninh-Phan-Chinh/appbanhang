@@ -13,19 +13,18 @@ import SignIn from './SignIn'
 import SignUp from './SignUp'
 
 export default class Authentication extends PureComponent {
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state = {isSignIn: true}
+        this.state = { isSignIn: true }
     }
 
     gotoSignIn() {
-        this.setState({isSignIn: true});
+        this.setState({ isSignIn: true });
     }
 
-    // componentDidMount() {
-    //     register('long123','chinh long','123')
-    //     // .then(res =>console.log(res))
-    // }
+    componentDidMount() {
+        register('long123', 'chinh long', '123')
+    }
 
     goBackToMain() {
         const { navigation } = this.props;
@@ -35,12 +34,10 @@ export default class Authentication extends PureComponent {
     render() {
         const { icon1, iconStyle, styleTitle,
             inactiveStyle, activeStyle,
-            container, controlStyle, 
+            container, controlStyle,
             signInstyle, signUpStyle, } = styles
-
-       
-        const {isSignIn} = this.state
-        const mainJSX = isSignIn ? <SignIn goBackToMain = {this.goBackToMain.bind(this)}/> : <SignUp gotoSignIn={this.gotoSignIn.bind(this)}/>
+        const { isSignIn } = this.state
+        const mainJSX = isSignIn ? <SignIn goBackToMain={this.goBackToMain.bind(this)} /> : <SignUp gotoSignIn={this.gotoSignIn.bind(this)} />
         return (
             <View style={container}>
                 <View style={icon1}>
@@ -58,15 +55,15 @@ export default class Authentication extends PureComponent {
                 </View>
                 {mainJSX}
                 <View style={controlStyle}>
-                    <TouchableOpacity 
-                    style={signInstyle} 
-                    onPress ={() =>{this.setState({isSignIn : true})}}
+                    <TouchableOpacity
+                        style={signInstyle}
+                        onPress={() => { this.setState({ isSignIn: true }) }}
                     >
                         <Text style={isSignIn ? activeStyle : inactiveStyle}>SIGN IN</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity 
-                    style={signUpStyle}
-                    onPress ={() =>{this.setState({isSignIn : false})}}
+                    <TouchableOpacity
+                        style={signUpStyle}
+                        onPress={() => { this.setState({ isSignIn: false }) }}
                     >
                         <Text style={!isSignIn ? activeStyle : inactiveStyle}>SIGN UP</Text>
                     </TouchableOpacity>
@@ -108,7 +105,7 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingVertical: 20,
         marginRight: 5,
-        marginLeft:17,
+        marginLeft: 17,
         borderTopLeftRadius: 30,
         borderBottomLeftRadius: 30
     },
@@ -120,9 +117,5 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 30,
         borderBottomRightRadius: 30
     },
-   
-})
 
-// <TouchableOpacity onPress={()=>{this.props.navigation.navigate('Main')}}>
-//                     <Text>Back Main</Text>
-//                 </TouchableOpacity>
+})

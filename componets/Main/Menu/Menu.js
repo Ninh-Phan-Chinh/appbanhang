@@ -12,18 +12,18 @@ export default class Menu extends PureComponent {
         CartsProduct.onSignIn = this.onSignIn.bind(this)
     }
     onSignIn(user) {
-        this.setState({ user});
-       
+        this.setState({ user });
+
     }
 
     onSignOut() {
-        this.setState({user: null})
+        this.setState({ user: null })
         saveToken('');
     }
 
     goToChangeInfo() {
-        const {navigation} = this.props;
-        navigation.navigate('ChangeInfo', {user: this.state.user})
+        const { navigation } = this.props;
+        navigation.navigate('ChangeInfo', { user: this.state.user })
     }
 
     render() {
@@ -34,18 +34,17 @@ export default class Menu extends PureComponent {
         const logoutJSX = (
             <View>
 
-                <TouchableOpacity 
-                style={buttonSignIn}
-                onPress = {()=>{this.props.navigation.navigate('Authentication')}}
+                <TouchableOpacity
+                    style={buttonSignIn}
+                    onPress={() => { this.props.navigation.navigate('Authentication') }}
                 >
                     <Text style={textSignIn}>Sign In</Text>
                 </TouchableOpacity>
             </View>
         );
-        const {user} = this.state
+        const { user } = this.state
         const loginJSX = (
             <View>
-
                 <View style={loginContainer}>
                     <Text style={userName}>{user ? user.name : ''}</Text>
                     <View style={{ marginBottom: 130 }}>
@@ -125,15 +124,3 @@ const styles = StyleSheet.create({
         fontSize: 20
     }
 })
-
-
-{/* <Text> Menu </Text>
-<TouchableOpacity onPress = {()=>{this.props.navigation.navigate('Authentication')}}>
-    <Text>go to Authentication </Text>
-</TouchableOpacity>
-<TouchableOpacity onPress = {()=>{this.props.navigation.navigate('OrderHistory')}}>
-    <Text>go to OrderHistory </Text>
-</TouchableOpacity>
-<TouchableOpacity onPress = {()=>{this.props.navigation.navigate('ChangeInfo')}}>
-    <Text>go to ChangeInfo </Text>
-</TouchableOpacity> */}

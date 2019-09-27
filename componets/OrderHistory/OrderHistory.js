@@ -77,7 +77,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         margin: 13,
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        backgroundColor: 'white',
+        shadowColor: '#2e272b',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.2,
+        elevation: 8
     },
     o1: {
         flexDirection: 'column',

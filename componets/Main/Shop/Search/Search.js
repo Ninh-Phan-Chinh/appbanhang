@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Text, View, TouchableOpacity, StyleSheet, Image, ScrollView, FlatList } from 'react-native'
 
-import sp3 from '../../../../media/temp/sp3.jpeg'
 import CartsProduct from '../../../Api/CartsProduct'
 import Api from '../../../Api/Api'
 
@@ -36,7 +35,7 @@ export default class SearchView extends PureComponent {
                     data={this.state.listProduct}
                     renderItem={({ item }) => (
                         <View style={styleBody}>
-                            <Image source={{uri: `${Api}api/images/product/${item.images[0]}`}} style={styleParty} />
+                            <Image source={{ uri: `${Api}api/images/product/${item.images[0]}` }} style={styleParty} />
                             <View style={informationStyle}>
                                 <Text style={styleNameSp1}>{toTitleCase(item.name)}</Text>
                                 <Text style={styleMoney}>{item.price}$</Text>
@@ -51,7 +50,7 @@ export default class SearchView extends PureComponent {
                                         marginRight: 5,
                                         marginLeft: 5
                                     }} />
-                                    <TouchableOpacity onPress = {() => this.goToDetail(item)}>
+                                    <TouchableOpacity onPress={() => this.goToDetail(item)}>
                                         <Text style={styleShow}>SHOW DETAILS</Text>
                                     </TouchableOpacity>
                                 </View>
@@ -74,7 +73,11 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         margin: 10,
         flexDirection: 'row',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        shadowColor: '#2e272b',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.2,
+        elevation: 8
     },
     styleParty: {
         width: 80,

@@ -15,7 +15,6 @@ import searchS from '../../../media/appIcon/search0.png'
 import search from '../../../media/appIcon/search.png'
 import contactS from '../../../media/appIcon/contact0.png'
 import contact from '../../../media/appIcon/contact.png'
-import Api from '../../Api/Api'
 import CartsProduct from '../../Api/CartsProduct';
 import InitData from '../../Api/InitData'
 import SaveCart from '../../Api/SaveCart'
@@ -48,12 +47,12 @@ export default class Shop extends PureComponent {
     }
 
     gotosearch() {
-        this.setState({ selectedTab: 'Search'})
+        this.setState({ selectedTab: 'Search' })
     }
 
     addProductToCart(product) {
         const isExist = this.state.cartArray.some(e => e.product.id === product.id)
-        if(isExist) return false;
+        if (isExist) return false;
         this.setState({ cartArray: this.state.cartArray.concat({ product, quantity: 1 }) },
             () => SaveCart(this.state.cartArray)
         )
@@ -77,8 +76,8 @@ export default class Shop extends PureComponent {
             () => SaveCart(this.state.cartArray))
     }
 
-    removeProduct (productId) {
-        const newCart = this.state.cartArray.filter(e => e.product.id !== productId);    
+    removeProduct(productId) {
+        const newCart = this.state.cartArray.filter(e => e.product.id !== productId);
         this.setState({ cartArray: newCart },
             () => SaveCart(this.state.cartArray))
     }
@@ -90,7 +89,6 @@ export default class Shop extends PureComponent {
             <View style={{ flex: 1 }}>
                 <Header openMenu={this.props.open}
                 />
-
                 <TabNavigator>
                     <TabNavigator.Item
                         selected={selectedTab === 'Home'}
@@ -116,7 +114,7 @@ export default class Shop extends PureComponent {
                         renderIcon={() => <Image source={searchS} style={iconStyle} />}
                         renderSelectedIcon={() => <Image source={search} style={iconStyle} />}
                         onPress={() => this.setState({ selectedTab: 'Search' })}>
-                        <Search navigation = {this.props.navigation}/>
+                        <Search navigation={this.props.navigation} />
                     </TabNavigator.Item>
                     <TabNavigator.Item
                         selected={selectedTab === 'Contact'}
@@ -127,8 +125,6 @@ export default class Shop extends PureComponent {
                         <Contact />
                     </TabNavigator.Item>
                 </TabNavigator>
-
-
             </View>
         )
     }

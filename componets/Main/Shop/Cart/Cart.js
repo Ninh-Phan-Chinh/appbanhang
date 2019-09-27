@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Text, View, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native'
-
-import iconParty1 from '../../../../media/appIcon/party.jpeg'
+import { Text, View, TouchableOpacity, StyleSheet, Image, ScrollView, Alert } from 'react-native'
 
 import Api from '../../../Api/Api'
 import CartsProduct from '../../../Api/CartsProduct'
@@ -29,20 +27,39 @@ export default class Cart extends PureComponent {
         this.props.navigation.navigate('ProductDetail', { productItem });
     }
 
+     alertSucces() {
+          Alert.alert(
+            'Confirm',
+            'Do you want to send this order?',
+            [
+                {
+                    text: 'Cancel',
+                    onPress: () =>  console.log('Cancel Pressed'),
+                    style: 'cancel',
+                },
+                
+                { text: 'OK', onPress: this.onSendOrder.bind(this)},         
+            ],  
+            { cancelable: false },
+        );
+    }
+
     async onSendOrder() {
-        try { 
-            const token  = await getToken();
-            const arrayDetail = this.props.cartArray.map(e =>({
-                id: e.product.id, 
+        try {
+            const token = await getToken();
+            const arrayDetail = this.props.cartArray.map(e => ({
+                id: e.product.id,
                 quantity: e.quantity
             }))
             const kq = await sendOrder(token, arrayDetail);
-            if (kq === 'THEM_THANH_CONG'){
+            console.log(kq)
+            
+            if (kq === 'THEM_THANH_CONG') {
                 console.log('THEM THANH CONG')
             } else {
-                console.log( 'them that bai')
+                console.log('them that bai')
             }
-        }catch (e) {
+        } catch (e) {
             console.log(e);
         }
     }
@@ -52,46 +69,43 @@ export default class Cart extends PureComponent {
         const { container, styleDress, styleImage, stylecA3,
             styleNumber, styleA2, body, styleLast } = styles
         const arrTotal = cartArray.map(e => e.product.price * e.quantity);
-        const total =arrTotal.length ? arrTotal.reduce((a,b) => a+b) : 0 ;
+        const total = arrTotal.length ? arrTotal.reduce((a, b) => a + b) : 0;
         return (
             <View style={container}>
                 <ScrollView style={body}>
                     {cartArray.map(cartItem => (
-                        <View  style={styleDress}>
-                            <Image source={{uri: `${Api}api/images/product/${cartItem.product.images[0]}`}} style={styleImage} />
+                        <View style={styleDress}>
+                            <Image source={{ uri: `${Api}api/images/product/${cartItem.product.images[0]}` }} style={styleImage} />
                             <View style={styleA2}>
                                 <Text style={{ fontSize: 16, color: '#9e9e9e' }}>{toTitleCase(cartItem.product.name)}</Text>
                                 <Text style={{ fontSize: 17, color: '#e91e63' }}>{cartItem.product.price}$</Text>
                                 <View style={styleNumber}>
-                                    <TouchableOpacity onPress = {() => this.incrQuantity(cartItem.product.id)}>
-                                        <Text style={{ fontSize: 20,marginTop: 5 }} >+</Text>
+                                    <TouchableOpacity onPress={() => this.incrQuantity(cartItem.product.id)}>
+                                        <Text style={{ fontSize: 20, marginTop: 5 }} >+</Text>
                                     </TouchableOpacity>
-                                    <Text style={{ fontSize: 20,marginTop: 5 }}>{cartItem.quantity}</Text>
-                                    <TouchableOpacity onPress = {() => this.decrQuantity(cartItem.product.id)}>
+                                    <Text style={{ fontSize: 20, marginTop: 5 }}>{cartItem.quantity <= 0 ? 0 : cartItem.quantity}</Text>
+                                    <TouchableOpacity onPress={() => this.decrQuantity(cartItem.product.id)}>
                                         <Text style={{ fontSize: 30 }}>-</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
                             <View style={stylecA3}>
-                                <TouchableOpacity onPress={() =>this.removeProduct(cartItem.product.id)}>
+                                <TouchableOpacity onPress={() => this.removeProduct(cartItem.product.id)}>
                                     <Text style={{ fontSize: 20 }}>X</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={()=>this.navigateDetail(cartItem.product)}>
+                                <TouchableOpacity onPress={() => this.navigateDetail(cartItem.product)}>
                                     <Text style={{ color: '#f06292' }}>SHOW DETAILS</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
                     ))}
-
                 </ScrollView>
-
                 <TouchableOpacity style={styleLast}
-                        onPress = {this.onSendOrder.bind(this)}
+                    onPress={this.alertSucces.bind(this)}
                 >
                     <Text> TOTAL {total}$ CHECKOUT NOW</Text>
                 </TouchableOpacity>
             </View>
-
         )
     }
 }
@@ -107,7 +121,13 @@ const styles = StyleSheet.create({
         borderRadius: 3,
         flexDirection: 'row',
         padding: 10,
-        marginBottom: 15
+        marginBottom: 15,
+        backgroundColor: 'white',
+        margin: 3,
+        shadowColor: '#2e272b',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.2,
+        elevation: 8
     },
     styleImage: {
         height: 120,
@@ -144,46 +164,3 @@ const styles = StyleSheet.create({
     }
 })
 
-
-{/* <View style = {styleDress}>
-                    <Image source={iconParty1} style={styleImage}/>
-                    <View style={styleA2}>
-                        <Text style = {{fontSize: 20,color:'#9e9e9e'}}>Lace Sleeve Si</Text>
-                        <Text style = {{fontSize: 20,color:'#e91e63'}}>227$</Text>
-                        <View style = {styleNumber}>
-                        <TouchableOpacity onPress = {()=>{this.setState({value: this.state.value +1})}}>
-                            <Text style={{fontSize:25}} >+</Text>
-                        </TouchableOpacity>
-                        <Text style={{fontSize:20}}>{this.state.value}</Text>
-                        <TouchableOpacity onPress = {()=>{this.setState({value: this.state.value -1 < 0? 0:this.state.value -1 })}}>
-                            <Text style={{fontSize:25}}>-</Text>
-                        </TouchableOpacity>    
-                        </View>                                        
-                    </View>
-                    <View style={stylecA3}>
-                        <TouchableOpacity>
-                            <Text style={{fontSize:17}}>X</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress = {()=>{this.props.navigation.navigate('ProductDetail')}}>
-                            <Text style={{color:'#f06292'}}>SHOW DETAILS</Text>
-                        </TouchableOpacity>
-                    </View>
-               </View> */}
-
-
-// import React, { PureComponent } from 'react';
-// import {createAppContainer} from 'react-navigation';
-// import {createStackNavigator} from 'react-navigation-stack';
-// import {fromLeft} from 'react-navigation-transitions'
-
-// import ProductDetail from '../ProductDetail/ProductDetail';
-// import CartView from '../Cart/CartView';
-// const StackNavigator = createStackNavigator({
-//     CartView: { screen: CartView},
-//     ProductDetail: { screen: ProductDetail }
-// }, {
-//         initialRouteName: 'CartView',
-//         transitionConfig: () => fromLeft(1000),
-//         headerMode: 'none'
-// });
-// export default createAppContainer(StackNavigator)

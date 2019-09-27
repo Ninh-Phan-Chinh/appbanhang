@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import {  RefreshControl,Text, View, TouchableOpacity, StyleSheet, Image, ScrollView, FlatList } from 'react-native'
+import { RefreshControl, Text, View, TouchableOpacity, StyleSheet, Image, FlatList } from 'react-native'
 import getListProduct from '../../../Api/getListProduct'
 
 import Api from '../../../Api/Api'
@@ -22,13 +22,13 @@ export default class ListProduct extends PureComponent {
     }
 
     componentDidMount() {
-        const { id } = this.props.navigation.getParam('category')  
-        getListProduct(id,1)
-        .then(arrProduct => {
-            this.arr = arrProduct;
-            this.setState({listProducts: this.arr})
-        })
-        .catch(err => console.log(err))
+        const { id } = this.props.navigation.getParam('category')
+        getListProduct(id, 1)
+            .then(arrProduct => {
+                this.arr = arrProduct;
+                this.setState({ listProducts: this.arr })
+            })
+            .catch(err => console.log(err))
     }
 
     goToDetail(productItem) {
@@ -36,7 +36,7 @@ export default class ListProduct extends PureComponent {
     }
 
     render() {
-        const { constainer, header, inContainer, styleShow, colorStyle,
+        const { constainer, header, inContainer, styleShow,
             iconStyle, textIcon, styleBody, styleParty, informationStyle
             , styleNameSp1, styleMoney, materialStyle, styleTextColor
             , styleTouopcity } = styles
@@ -55,19 +55,21 @@ export default class ListProduct extends PureComponent {
                         data={this.state.listProducts}
                         renderItem={({ item }) => (
                             <View style={styleBody}>
-                                <Image source={{uri: `${Api}api/images/product/${item.images[0]}`}} style={styleParty} />
+                                <Image source={{ uri: `${Api}api/images/product/${item.images[0]}` }} style={styleParty} />
                                 <View style={informationStyle}>
                                     <Text style={styleNameSp1}>{toTitleCase(item.name)}</Text>
                                     <Text style={styleMoney}>{item.price}$</Text>
                                     <Text style={materialStyle}>Material {item.material}</Text>
                                     <View style={styleTouopcity}>
                                         <Text style={styleTextColor}>Color {item.color}</Text>
-                                        <View style={{height: 20,
-                                                    width: 20,
-                                                    borderRadius: 10,
-                                                    backgroundColor: item.color.toLowerCase(),
-                                                    marginRight: 5,
-                                                    marginLeft: 5}} />
+                                        <View style={{
+                                            height: 20,
+                                            width: 20,
+                                            borderRadius: 10,
+                                            backgroundColor: item.color.toLowerCase(),
+                                            marginRight: 5,
+                                            marginLeft: 5
+                                        }} />
                                         <TouchableOpacity onPress={() => this.goToDetail(item)}>
                                             <Text style={styleShow}>SHOW DETAILS</Text>
                                         </TouchableOpacity>
@@ -75,20 +77,21 @@ export default class ListProduct extends PureComponent {
                                 </View>
                             </View>
                         )}
-                        refreshControl = {
+                        refreshControl={
                             <RefreshControl
                                 refreshing={this.state.refreshing}
-                                onRefresh={()=>{
-                                    this.setState({refreshing: true});
-                                    const newPage = this.state.page +1
+                                onRefresh={() => {
+                                    this.setState({ refreshing: true });
+                                    const newPage = this.state.page + 1
                                     const { id } = this.props.navigation.getParam('category')
-                                    getListProduct(id,newPage)
-                                    .then(arrProduct =>{
-                                        this.arr=arrProduct.concat(this.arr)
-                                        this.setState({
-                                        listProducts: this.arr,
-                                        refreshing: false
-                                    })})
+                                    getListProduct(id, newPage)
+                                        .then(arrProduct => {
+                                            this.arr = arrProduct.concat(this.arr)
+                                            this.setState({
+                                                listProducts: this.arr,
+                                                refreshing: false
+                                            })
+                                        })
                                 }}
                             />
                         }
@@ -108,7 +111,12 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white',
         margin: 12,
-        borderRadius: 10
+        borderRadius: 10,
+        backgroundColor: 'white',
+        shadowColor: '#2e272b',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.2,
+        elevation: 8
     },
     header: {
         height: 50,
@@ -175,6 +183,3 @@ const styles = StyleSheet.create({
         color: '#ec407a'
     }
 })
-
-
-
