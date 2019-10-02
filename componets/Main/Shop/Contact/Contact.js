@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image } from 'react-native'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 import location from '../../../../media/appIcon/location.png'
-import phone from '../../../../media/appIcon/phone.png' 
+import phone from '../../../../media/appIcon/phone.png'
 import mail from '../../../../media/appIcon/mail.png'
 import massage from '../../../../media/appIcon/message.png'
 
@@ -15,13 +15,13 @@ export default class Contact extends PureComponent {
                 <View style={bodyMap}>
                     <MapView style ={styleMap}
                         provider={PROVIDER_GOOGLE}
+                       
                         region={{
                             latitude: 37.78825,
                             longitude: -122.4324,
                             latitudeDelta: 0.015,
                             longitudeDelta: 0.0121,
                         }}
-                        
                     >
                     </MapView>
                 </View>
@@ -85,5 +85,3 @@ const styles = StyleSheet.create({
         color: '#ec407a'
     }
 })
-
-
