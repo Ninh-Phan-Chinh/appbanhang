@@ -15,7 +15,6 @@ import searchS from '../../../media/appIcon/search0.png'
 import search from '../../../media/appIcon/search.png'
 import contactS from '../../../media/appIcon/contact0.png'
 import contact from '../../../media/appIcon/contact.png'
-import Api from '../../Api/Api'
 import CartsProduct from '../../Api/CartsProduct';
 import InitData from '../../Api/InitData'
 import SaveCart from '../../Api/SaveCart'
@@ -25,6 +24,7 @@ export default class Shop extends PureComponent {
     constructor(props) {
         super(props)
         this.state = {
+<<<<<<< HEAD
              selectedTab: 'Home',
              categoryTypes: [],
              topProducts: [],
@@ -32,22 +32,52 @@ export default class Shop extends PureComponent {
      }; 
      CartsProduct.addProductToCart = this.addProductToCart.bind(this);
      CartsProduct.incrQuantity = this.incrQuantity.bind(this);  
-    }
-    componentDidMount() {
-        InitData()
-        .then(resJSON => {
-            this.setState({ categoryTypes: resJSON.type, topProducts: resJSON.product });
-        });
-        GetCart()
-        .then(cartArray => this.setState({ cartArray }))
-    }
-    addProductToCart(product) {
-        this.setState(
-            { cartArray: this.state.cartArray.concat({product, quantity: 1}) },
-        () =>SaveCart(this.state.cartArray)
-        );
+=======
+            selectedTab: 'Home',
+            types: [],
+            topProducts: [],
+            cartArray: []
+        };
+        CartsProduct.addProductToCart = this.addProductToCart.bind(this);
+        CartsProduct.incrquantity = this.incrquantity.bind(this);
+        CartsProduct.decrQuantity = this.decrQuantity.bind(this);
+        CartsProduct.removeProduct = this.removeProduct.bind(this);
+        CartsProduct.gotoSearch = this.gotosearch.bind(this);
+>>>>>>> giaodien
     }
 
+    componentDidMount() {
+        InitData()
+            .then(resJSON => {
+                const { type, product } = resJSON;
+                this.setState({ types: type, topProducts: product })
+            });
+        GetCart()
+            .then(cartArray => this.setState({ cartArray }))
+    }
+
+    gotosearch() {
+        this.setState({ selectedTab: 'Search' })
+    }
+
+    addProductToCart(product) {
+        const isExist = this.state.cartArray.some(e => e.product.id === product.id)
+        if (isExist) return false;
+        this.setState({ cartArray: this.state.cartArray.concat({ product, quantity: 1 }) },
+            () => SaveCart(this.state.cartArray)
+        )
+    }
+
+    incrquantity(productId) {
+        const newCart = this.state.cartArray.map(e => {
+            if (e.product.id !== productId) return e;
+            return { product: e.product, quantity: e.quantity + 1 }
+        });
+        this.setState({ cartArray: newCart },
+            () => SaveCart(this.state.cartArray))
+    }
+
+<<<<<<< HEAD
     incrQuantity(productId) {
         const newCart = this.state.cartArray.map( item =>{
             if ( item.product.id !== productId) return item;
@@ -58,16 +88,30 @@ export default class Shop extends PureComponent {
 
     decrQuantity(productId) {
         
+=======
+    decrQuantity(productId) {
+        const newCart = this.state.cartArray.map(e => {
+            if (e.product.id !== productId) return e;
+            return { product: e.product, quantity: e.quantity - 1 }
+        });
+        this.setState({ cartArray: newCart },
+            () => SaveCart(this.state.cartArray))
+    }
+
+    removeProduct(productId) {
+        const newCart = this.state.cartArray.filter(e => e.product.id !== productId);
+        this.setState({ cartArray: newCart },
+            () => SaveCart(this.state.cartArray))
+>>>>>>> giaodien
     }
 
     render() {
         const { iconStyle } = styles
-        const {categoryTypes, selectedTab,topProducts,cartArray} = this.state
+        const { types, selectedTab, topProducts, cartArray } = this.state
         return (
             <View style={{ flex: 1 }}>
                 <Header openMenu={this.props.open}
                 />
-
                 <TabNavigator>
                     <TabNavigator.Item
                         selected={selectedTab === 'Home'}
@@ -75,7 +119,11 @@ export default class Shop extends PureComponent {
                         renderIcon={() => <Image source={iconHomeS} style={iconStyle} />}
                         renderSelectedIcon={() => <Image source={iconHome} style={iconStyle} />}
                         onPress={() => this.setState({ selectedTab: 'Home' })}>
+<<<<<<< HEAD
                         <Home categoryTypes = {categoryTypes} topProducts = {topProducts} navigation = {this.props}/>
+=======
+                        <Home types={types} topProducts={topProducts} navigation={this.props.navigation} />
+>>>>>>> giaodien
                     </TabNavigator.Item>
                     <TabNavigator.Item
                         selected={selectedTab === 'Cart'}
@@ -85,7 +133,7 @@ export default class Shop extends PureComponent {
                         onPress={() => this.setState({ selectedTab: 'Cart' })}
                         badgeText={cartArray.length}
                     >
-                        <Cart cartArray={cartArray}/>
+                        <Cart cartArray={cartArray} navigation={this.props.navigation} />
                     </TabNavigator.Item>
                     <TabNavigator.Item
                         selected={selectedTab === 'Search'}
@@ -93,7 +141,7 @@ export default class Shop extends PureComponent {
                         renderIcon={() => <Image source={searchS} style={iconStyle} />}
                         renderSelectedIcon={() => <Image source={search} style={iconStyle} />}
                         onPress={() => this.setState({ selectedTab: 'Search' })}>
-                        <Search />
+                        <Search navigation={this.props.navigation} />
                     </TabNavigator.Item>
                     <TabNavigator.Item
                         selected={selectedTab === 'Contact'}
@@ -104,8 +152,6 @@ export default class Shop extends PureComponent {
                         <Contact />
                     </TabNavigator.Item>
                 </TabNavigator>
-
-
             </View>
         )
     }

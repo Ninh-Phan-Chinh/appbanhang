@@ -1,50 +1,84 @@
-import React, { PureComponent } from 'react'
-import { Text, View,TouchableOpacity,Image,StyleSheet,TextInput } from 'react-native'
+import React, { Component } from 'react'
+import { Text, Alert, View, TouchableOpacity, Image, StyleSheet, TextInput } from 'react-native'
 
 import iconBacks from '../../media/appIcon/backs.png'
+import getToken from '../Api/getToken'
+import changeInfoApi from '../Api/changInfo'
+import CartsProduct from '../Api/CartsProduct'
 
-export default class ChangeInfo extends PureComponent {
-    constructor(props){
+export default class ChangeInfo extends Component {
+    constructor(props) {
         super(props)
+        const { name, address, phone } = this.props.navigation.getParam('user')
         this.state = {
-            txtName: 'Chinh Ninh Phan',
-            txtAddres: '67 Luy Ban Bich',
-            txtPhone: '0352804047'
+            txtName: name,
+            txtAddres: address,
+            txtPhone: phone
         }
     }
-    
+
+    goBackToMain() {
+        const { navigation } = this.props;
+        navigation.goBack()
+    }
+
+    alertSucces() {
+        Alert.alert(
+            'Notice',
+            'update info successfully',
+            [
+                { text: 'Ok', onPress: this.goBackToMain.bind(this) },
+            ],
+            { cancelable: false },
+        );
+    }
+
+    change() {
+        const { txtName, txtAddres, txtPhone } = this.state;
+        console.log(txtName)
+        getToken()
+            .then(token => changeInfoApi(token, txtName, txtPhone, txtAddres))
+            .then(user => {
+                this.alertSucces();
+                CartsProduct.onSignIn(user)
+            })
+            .catch()
+    }
+
     render() {
-        const {textButton,styleButton,container,header,styleIcon,styleText,textInput,body} = styles
+        const { textButton, styleButton, container, header, styleIcon, styleText, textInput, body } = styles
+        const { txtName, txtAddres, txtPhone } = this.state
         return (
             <View style={container}>
-                <View style = {header}>
-                    <View/>
+                <View style={header}>
+                    <View />
                     <Text style={styleText}>User Infomation</Text>
-                    <TouchableOpacity onPress={()=>{this.props.navigation.goBack()}}>
-                        <Image source={iconBacks} style={styleIcon}/>
+                    <TouchableOpacity onPress={this.goBackToMain.bind(this)}>
+                        <Image source={iconBacks} style={styleIcon} />
                     </TouchableOpacity>
                 </View>
                 <View style={body}>
-                    <TextInput style ={textInput}
-                                placeholder = 'Enter your name'
-                                autoCapitalize = 'none'
-                                value = {this.state.txtName}
-                                onChangeText = {txtName => this.setState({...this.state,txtName})}
+                    <TextInput
+                        style={textInput}
+                        placeholder='Enter your name'
+                        autoCapitalize='none'
+                        value={txtName}
+                        onChangeText={txtName => this.setState({ ...this.state, txtName })}
                     />
-                    <TextInput style ={textInput}
-                    placeholder = 'Enter your addres'
-                    autoCapitalize = 'none'
-                    value = {this.state.txtAddres}
-                    onChangeText = {txtName => this.setState({...this.state,txtName})}
+                    <TextInput style={textInput}
+                        placeholder='Enter your addres'
+                        autoCapitalize='none'
+                        value={txtAddres}
+                        onChangeText={txtAddres => this.setState({ ...this.state, txtAddres })}
                     />
-                    <TextInput style ={textInput}
-                    placeholder = 'Enter your phone number'
-                    autoCapitalize = 'none'
-                    value = {this.state.txtPhone}
-                    onChangeText = {txtName => this.setState({...this.state,txtName})}
+                    <TextInput style={textInput}
+                        placeholder='Enter your phone number'
+                        autoCapitalize='none'
+                        value={txtPhone}
+                        onChangeText={txtPhone => this.setState({ ...this.state, txtPhone })}
                     />
-                    <TouchableOpacity style = {styleButton}>
-                        <Text style ={textButton}>CHANGE YOUR INFOMATION</Text>
+                    <TouchableOpacity style={styleButton} onPress={this.change.bind(this)}>
+                        <Text style={textButton}>CHANGE YOUR INFOMATION</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -53,47 +87,47 @@ export default class ChangeInfo extends PureComponent {
 }
 
 const styles = StyleSheet.create({
-    container:{
+    container: {
         flex: 1,
         backgroundColor: '#eeeeee'
     },
-    header:{
+    header: {
         height: 70,
-        backgroundColor:'green',
+        backgroundColor: 'green',
         justifyContent: 'space-around',
         flexDirection: 'row',
         alignItems: 'center'
     },
-    styleText:{
+    styleText: {
         fontSize: 20,
-        color:'white'
+        color: 'white'
     },
-    styleIcon:{
-        height:30,
-        width:30,
+    styleIcon: {
+        height: 30,
+        width: 30,
     },
-    body:{
-        flex:1,
+    body: {
+        flex: 1,
         justifyContent: 'center',
         margin: 20
     },
-    textInput:{
-        height:50,
-        borderWidth:1,
+    textInput: {
+        height: 50,
+        borderWidth: 1,
         borderColor: 'green',
-        borderRadius: 30, 
+        borderRadius: 30,
         paddingLeft: 20,
-        fontSize: 20 ,
-        marginBottom: 20    
+        fontSize: 20,
+        marginBottom: 20
     },
-    styleButton:{
-        height:50,
+    styleButton: {
+        height: 50,
         backgroundColor: 'green',
-        borderRadius:30,
+        borderRadius: 30,
         justifyContent: 'center',
         alignItems: 'center'
     },
-    textButton:{
+    textButton: {
 
     }
 })

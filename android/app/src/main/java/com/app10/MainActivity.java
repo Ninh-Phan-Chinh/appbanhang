@@ -1,4 +1,8 @@
+<<<<<<< HEAD:android/app/src/main/java/com/saochepapp8/MainActivity.java
 package com.appbanhang;
+=======
+package com.app10;
+>>>>>>> giaodien:android/app/src/main/java/com/app10/MainActivity.java
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +14,10 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
+<<<<<<< HEAD:android/app/src/main/java/com/saochepapp8/MainActivity.java
         return "appbanhang";
+=======
+        return "app10";
+>>>>>>> giaodien:android/app/src/main/java/com/app10/MainActivity.java
     }
 }

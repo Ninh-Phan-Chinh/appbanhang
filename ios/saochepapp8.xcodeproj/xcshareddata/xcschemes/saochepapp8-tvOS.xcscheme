@@ -29,9 +29,15 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
+<<<<<<< HEAD
                BuildableName = "appbanhang-tvOS.app"
                BlueprintName = "appbanhang-tvOS"
                ReferencedContainer = "container:appbanhang.xcodeproj">
+=======
+               BuildableName = "app10-tvOS.app"
+               BlueprintName = "app10-tvOS"
+               ReferencedContainer = "container:app10.xcodeproj">
+>>>>>>> giaodien
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +49,15 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
+<<<<<<< HEAD
                BuildableName = "appbanhang-tvOSTests.xctest"
                BlueprintName = "appbanhang-tvOSTests"
                ReferencedContainer = "container:appbanhang.xcodeproj">
+=======
+               BuildableName = "app10-tvOSTests.xctest"
+               BlueprintName = "app10-tvOSTests"
+               ReferencedContainer = "container:app10.xcodeproj">
+>>>>>>> giaodien
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -61,9 +73,15 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
+<<<<<<< HEAD
                BuildableName = "appbanhang-tvOSTests.xctest"
                BlueprintName = "appbanhang-tvOSTests"
                ReferencedContainer = "container:appbanhang.xcodeproj">
+=======
+               BuildableName = "app10-tvOSTests.xctest"
+               BlueprintName = "app10-tvOSTests"
+               ReferencedContainer = "container:app10.xcodeproj">
+>>>>>>> giaodien
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -71,9 +89,15 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
+<<<<<<< HEAD
             BuildableName = "appbanhang-tvOS.app"
             BlueprintName = "appbanhang-tvOS"
             ReferencedContainer = "container:appbanhang.xcodeproj">
+=======
+            BuildableName = "app10-tvOS.app"
+            BlueprintName = "app10-tvOS"
+            ReferencedContainer = "container:app10.xcodeproj">
+>>>>>>> giaodien
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -94,9 +118,15 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
+<<<<<<< HEAD
             BuildableName = "appbanhang-tvOS.app"
             BlueprintName = "appbanhang-tvOS"
             ReferencedContainer = "container:appbanhang.xcodeproj">
+=======
+            BuildableName = "app10-tvOS.app"
+            BlueprintName = "app10-tvOS"
+            ReferencedContainer = "container:app10.xcodeproj">
+>>>>>>> giaodien
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -113,9 +143,15 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
+<<<<<<< HEAD
             BuildableName = "appbanhang-tvOS.app"
             BlueprintName = "appbanhang-tvOS"
             ReferencedContainer = "container:appbanhang.xcodeproj">
+=======
+            BuildableName = "app10-tvOS.app"
+            BlueprintName = "app10-tvOS"
+            ReferencedContainer = "container:app10.xcodeproj">
+>>>>>>> giaodien
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

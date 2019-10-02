@@ -1,26 +1,41 @@
 import React, { PureComponent } from 'react'
 import {
-    Text, View, Image, StyleSheet, Dimensions,
-    ImageBackground, ScrollView, TouchableOpacity
+    Text, View, StyleSheet, Dimensions,
+    ImageBackground, TouchableOpacity
 } from 'react-native'
 import Swiper from 'react-native-swiper'
 import Api from '../../../Api/Api'
-import littleIcon from '../../../../media/temp/little.jpg'
-import maxIcon from '../../../../media/temp/maxi.jpg'
-import partyIcon from '../../../../media/temp/party.jpg'
 
 const { height, width } = Dimensions.get('window')
 
 export default class Collection extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.goToListProduct = this.goToListProduct.bind(this);
+    }
+    goToListProduct(category) {
+        this.props.navigation.navigate('ListProduct', { category })
+    }
     render() {
-        const { categoryTypes } = this.props;
+        const { types } = this.props
         const { wraper, textStyle, imagestyle, textImage } = styles
+        const swiper = (
+            <Swiper >
+                {types.map(e => (
+                    <TouchableOpacity onPress={() => this.goToListProduct(e)} key={e.id}>
+                        <ImageBackground resizeMode='stretch' source={{ uri: `${Api}api/images/type/${e.image}` }} style={imagestyle} >
+                            <Text style={textImage}>{e.name}</Text>
+                        </ImageBackground >
+                    </TouchableOpacity>
+                ))}
+            </Swiper>)
         return (
             <View style={wraper}>
                 <View style={{ flex: 1 }}>
                     <Text style={textStyle}>LIST OF CATEGORY</Text>
                 </View>
                 <View style={{ flex: 5, }}>
+<<<<<<< HEAD
                     <Swiper >
                    
                             
@@ -38,14 +53,16 @@ export default class Collection extends PureComponent {
                         
                     </Swiper>  
 
+=======
+                    {swiper}
+>>>>>>> giaodien
                 </View>
-
 
             </View>
         )
     }
 }
-//933 x465
+
 const imageWidth = width - 40
 const imageHeight = imageWidth / 800 * 400
 
@@ -54,10 +71,11 @@ const styles = StyleSheet.create({
         height: 225,
         backgroundColor: 'white',
         margin: 10,
-        shadowColor: 'black',
-        shadowOffset: { width: 0, height: 5 },
+        shadowColor: '#2E272B',
+        shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.2,
-        padding: 10
+        elevation: 8,
+        padding: 10,
     },
     textStyle: {
         fontSize: 20,
@@ -68,26 +86,9 @@ const styles = StyleSheet.create({
         width: imageWidth,
         justifyContent: 'center',
         alignItems: 'center'
-        // marginBottom: 50
     },
     textImage: {
         fontSize: 23,
         color: '#bdbdbd'
     }
 })
-
-
-{/* <TouchableOpacity onPress={() => {
-                            this.props.navigation.navigate('ListProduct')
-                        }}>
-                            <ImageBackground resizeMode='stretch' source={maxIcon} style={imagestyle} >
-                                <Text style={textImage}>Maxi Dress</Text>
-                            </ImageBackground >
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => {
-                            this.props.navigation.navigate('ListProduct')
-                        }}>
-                            <ImageBackground resizeMode='stretch' source={partyIcon} style={imagestyle} >
-                                <Text style={textImage}>Maxi Dress</Text>
-                            </ImageBackground >
-                        </TouchableOpacity> */}

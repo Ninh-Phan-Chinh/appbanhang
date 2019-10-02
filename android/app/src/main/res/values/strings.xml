@@ -1,3 +1,7 @@
 <resources>
+<<<<<<< HEAD
     <string name="app_name">appbanhang</string>
+=======
+    <string name="app_name">app10</string>
+>>>>>>> giaodien
 </resources>

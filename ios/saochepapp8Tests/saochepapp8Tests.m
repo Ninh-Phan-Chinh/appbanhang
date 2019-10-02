@@ -14,11 +14,19 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React Native!"
 
+<<<<<<< HEAD
 @interface appbanhangTests : XCTestCase
 
 @end
 
 @implementation appbanhangTests
+=======
+@interface app10Tests : XCTestCase
+
+@end
+
+@implementation app10Tests
+>>>>>>> giaodien
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL(^)(UIView *view))test
 {

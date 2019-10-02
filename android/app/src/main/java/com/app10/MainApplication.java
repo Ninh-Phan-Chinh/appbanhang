@@ -1,4 +1,8 @@
+<<<<<<< HEAD:android/app/src/main/java/com/saochepapp8/MainApplication.java
 package com.appbanhang;
+=======
+package com.app10;
+>>>>>>> giaodien:android/app/src/main/java/com/app10/MainApplication.java
 
 import android.app.Application;
 import android.util.Log;

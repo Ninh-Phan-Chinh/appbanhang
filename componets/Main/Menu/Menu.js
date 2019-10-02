@@ -2,12 +2,30 @@ import React, { PureComponent } from 'react'
 import { Text, View, TouchableOpacity, StyleSheet, Image } from 'react-native'
 
 import profileIcon from '../../../media/temp/profile.png'
+import CartsProduct from '../../Api/CartsProduct'
+import saveToken from '../../Api/saveToken'
 
 export default class Menu extends PureComponent {
     constructor(props) {
         super(props)
-        this.state = { isLogedIn: true }
+        this.state = { user: null };
+        CartsProduct.onSignIn = this.onSignIn.bind(this)
     }
+    onSignIn(user) {
+        this.setState({ user });
+
+    }
+
+    onSignOut() {
+        this.setState({ user: null })
+        saveToken('');
+    }
+
+    goToChangeInfo() {
+        const { navigation } = this.props;
+        navigation.navigate('ChangeInfo', { user: this.state.user })
+    }
+
     render() {
 
         const { container, profile, buttonSignIn, userName,
@@ -16,19 +34,19 @@ export default class Menu extends PureComponent {
         const logoutJSX = (
             <View>
 
-                <TouchableOpacity 
-                style={buttonSignIn}
-                onPress = {()=>{this.props.navigation.navigate('Authentication')}}
+                <TouchableOpacity
+                    style={buttonSignIn}
+                    onPress={() => { this.props.navigation.navigate('Authentication') }}
                 >
                     <Text style={textSignIn}>Sign In</Text>
                 </TouchableOpacity>
             </View>
         );
+        const { user } = this.state
         const loginJSX = (
             <View>
-
                 <View style={loginContainer}>
-                    <Text style={userName}>Phan Chinh Ninh</Text>
+                    <Text style={userName}>{user ? user.name : ''}</Text>
                     <View style={{ marginBottom: 130 }}>
                         <TouchableOpacity
                             style={btnSignInStyle}
@@ -38,18 +56,18 @@ export default class Menu extends PureComponent {
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={btnSignInStyle}
-                            onPress={() => { this.props.navigation.navigate('ChangeInfo') }}
+                            onPress={this.goToChangeInfo.bind(this)}
                         >
                             <Text style={textSignIn}>Change Info</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={btnSignInStyle}>
+                        <TouchableOpacity style={btnSignInStyle} onPress={this.onSignOut.bind(this)}>
                             <Text style={textSignIn}>Sign out</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
             </View>
         )
-        const mainJSx = this.state.isLogedIn ? loginJSX : logoutJSX;
+        const mainJSx = this.state.user ? loginJSX : logoutJSX;
         return (
             <View style={container}>
                 <Image source={profileIcon} style={profile} />
@@ -106,15 +124,3 @@ const styles = StyleSheet.create({
         fontSize: 20
     }
 })
-
-
-{/* <Text> Menu </Text>
-<TouchableOpacity onPress = {()=>{this.props.navigation.navigate('Authentication')}}>
-    <Text>go to Authentication </Text>
-</TouchableOpacity>
-<TouchableOpacity onPress = {()=>{this.props.navigation.navigate('OrderHistory')}}>
-    <Text>go to OrderHistory </Text>
-</TouchableOpacity>
-<TouchableOpacity onPress = {()=>{this.props.navigation.navigate('ChangeInfo')}}>
-    <Text>go to ChangeInfo </Text>
-</TouchableOpacity> */}

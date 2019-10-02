@@ -1,8 +1,13 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
+<<<<<<< HEAD
 target 'appbanhang' do
   # Pods for appbanhang
+=======
+target 'app10' do
+  # Pods for app10
+>>>>>>> giaodien
   pod 'React', :path => '../node_modules/react-native/'
   pod 'React-Core', :path => '../node_modules/react-native/React'
   pod 'React-DevSupport', :path => '../node_modules/react-native/React'
@@ -27,7 +32,11 @@ target 'appbanhang' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+<<<<<<< HEAD
   target 'appbanhangTests' do
+=======
+  target 'app10Tests' do
+>>>>>>> giaodien
     inherit! :search_paths
     # Pods for testing
   end
@@ -35,10 +44,17 @@ target 'appbanhang' do
   use_native_modules!
 end
 
+<<<<<<< HEAD
 target 'appbanhang-tvOS' do
   # Pods for appbanhang-tvOS
 
   target 'appbanhang-tvOSTests' do
+=======
+target 'app10-tvOS' do
+  # Pods for app10-tvOS
+
+  target 'app10-tvOSTests' do
+>>>>>>> giaodien
     inherit! :search_paths
     # Pods for testing
   end

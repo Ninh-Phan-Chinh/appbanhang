@@ -1,10 +1,8 @@
 import React, { PureComponent } from 'react'
-import { Text, View, TouchableOpacity, StyleSheet, Image,ScrollView } from 'react-native'
+import { Text, View, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native'
 
 import CartsProduct from '../../../Api/CartsProduct';
 import Api from '../../../Api/Api'
-import sp4 from '../../../../media/temp/sp4.jpeg'
-import sp5 from '../../../../media/temp/sp5.jpeg'
 import backIcon from '../../../../media/appIcon/back.png'
 import cartfullIcon from '../../../../media/appIcon/cartfull.png'
 export default class ProductDetail extends PureComponent {
@@ -13,41 +11,48 @@ export default class ProductDetail extends PureComponent {
         CartsProduct.addProductToCart(product);
     }
     render() {
-        const { container, styleDetail,txtbotton,styleSP,moneny,information
-             ,header,txtMoney,styleInformation,botton,colorStyle, imageIcon,imageStyle} = styles
-             const { name, price, color, material, description, images } = this.props.navigation.getParam('productItem')
+        const { container, styleDetail, txtbotton, styleSP, moneny, information
+            , header, txtMoney, styleInformation, botton, colorStyle, imageIcon, imageStyle } = styles
+        const { name, price, color, material, description, images } = this.props.navigation.getParam('productItem')
         return (
             <View style={container}>
                 <View style={styleDetail}>
                     <View style={header}>
-                        <TouchableOpacity onPress = {() =>{
+                        <TouchableOpacity onPress={() => {
                             this.props.navigation.goBack()
                         }}>
                             <Image source={backIcon} style={imageIcon} />
                         </TouchableOpacity>
-                        <TouchableOpacity onPress = {this.addProductToCart.bind(this)}>
+                        <TouchableOpacity onPress={this.addProductToCart.bind(this)}>
                             <Image source={cartfullIcon} style={imageIcon} />
                         </TouchableOpacity>
                     </View>
-                    <View style = {styleSP}>
-                        <Image source={{ uri: `${Api}api/images/product/${images[0]}` }} style ={imageStyle}/>
-                        <Image source={{ uri: `${Api}api/images/product/${images[1]}` }} style ={imageStyle}/>
+                    <View style={styleSP}>
+                        <Image source={{ uri: `${Api}api/images/product/${images[0]}` }} style={imageStyle} />
+                        <Image source={{ uri: `${Api}api/images/product/${images[1]}` }} style={imageStyle} />
                     </View>
                     <View style={moneny}>
-                        <Text style={{fontSize: 20}}>{name.toUpperCase()}</Text>
+                        <Text style={{ fontSize: 20 }}>{name.toUpperCase()}</Text>
                         <Text style={txtMoney}> / {price}$</Text>
                     </View>
                     <View style={information}>
-                        <Text  style={styleInformation}>
-                        {description}
+                        <Text style={styleInformation}>
+                            {description}
                         </Text>
                     </View>
                     <View style={botton}>
-                        <Text style = {txtbotton}>Material {material}</Text>
-                        <View style={{flexDirection:'row'}}>
-                        <Text style = {txtbotton}>Color {color}</Text>
-                        <View style={colorStyle}/>
-                        </View>                      
+                        <Text style={txtbotton}>Material {material}</Text>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={txtbotton}>Color {color}</Text>
+                            <View style={{
+                                height: 20,
+                                width: 20,
+                                borderRadius: 10,
+                                borderWidth: 1,
+                                borderColor: '#e91e63',
+                                backgroundColor: color.toLowerCase()
+                            }} />
+                        </View>
                     </View>
                 </View>
             </View>
@@ -77,51 +82,51 @@ const styles = StyleSheet.create({
         height: 25,
         width: 25
     },
-    imageStyle:{
-        height:230,
-        width:160
+    imageStyle: {
+        height: 230,
+        width: 160
     },
-    styleSP:{
-        flexDirection:'row',
-        justifyContent:'space-around',
+    styleSP: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
         marginTop: 20
     },
-    moneny:{
-        flexDirection:'row',
-        justifyContent:'center',
-        alignItems:'center',
+    moneny: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
         marginTop: 10
     },
-    information:{
+    information: {
         marginTop: 30,
-        marginLeft:17,
-        marginRight: 17
+        marginLeft: 17,
+        marginRight: 17,
     },
-    styleInformation:{
-        color:'#9e9e9e',
+    styleInformation: {
+        color: '#9e9e9e',
         fontSize: 15
     },
-    colorStyle:{
-        height:20,
-        width:20,
-        borderRadius:10,
-        borderWidth:1,
-        borderColor:'#e91e63',
+    colorStyle: {
+        height: 20,
+        width: 20,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#e91e63',
         backgroundColor: 'orange'
     },
-    botton:{
-        flexDirection:'row',
+    botton: {
+        flexDirection: 'row',
         marginTop: 21,
         marginRight: 17,
-        marginLeft:19,
-        justifyContent:'space-between'
+        marginLeft: 19,
+        justifyContent: 'space-between'
     },
-    txtMoney:{
-        color:'#9e9e9e',
-        fontSize:18
+    txtMoney: {
+        color: '#9e9e9e',
+        fontSize: 18
     },
-    txtbotton:{
+    txtbotton: {
         color: '#e91e63',
-        marginRight: 10
+        marginRight: 10,
     }
 })

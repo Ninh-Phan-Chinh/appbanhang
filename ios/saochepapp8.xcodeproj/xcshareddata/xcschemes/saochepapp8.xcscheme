@@ -29,9 +29,15 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+<<<<<<< HEAD
                BuildableName = "appbanhang.app"
                BlueprintName = "appbanhang"
                ReferencedContainer = "container:appbanhang.xcodeproj">
+=======
+               BuildableName = "app10.app"
+               BlueprintName = "app10"
+               ReferencedContainer = "container:app10.xcodeproj">
+>>>>>>> giaodien
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +49,15 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
+<<<<<<< HEAD
                BuildableName = "appbanhangTests.xctest"
                BlueprintName = "appbanhangTests"
                ReferencedContainer = "container:appbanhang.xcodeproj">
+=======
+               BuildableName = "app10Tests.xctest"
+               BlueprintName = "app10Tests"
+               ReferencedContainer = "container:app10.xcodeproj">
+>>>>>>> giaodien
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -61,9 +73,15 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
+<<<<<<< HEAD
                BuildableName = "appbanhangTests.xctest"
                BlueprintName = "appbanhangTests"
                ReferencedContainer = "container:appbanhang.xcodeproj">
+=======
+               BuildableName = "app10Tests.xctest"
+               BlueprintName = "app10Tests"
+               ReferencedContainer = "container:app10.xcodeproj">
+>>>>>>> giaodien
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -71,9 +89,15 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+<<<<<<< HEAD
             BuildableName = "appbanhang.app"
             BlueprintName = "appbanhang"
             ReferencedContainer = "container:appbanhang.xcodeproj">
+=======
+            BuildableName = "app10.app"
+            BlueprintName = "app10"
+            ReferencedContainer = "container:app10.xcodeproj">
+>>>>>>> giaodien
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -94,9 +118,15 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+<<<<<<< HEAD
             BuildableName = "appbanhang.app"
             BlueprintName = "appbanhang"
             ReferencedContainer = "container:appbanhang.xcodeproj">
+=======
+            BuildableName = "app10.app"
+            BlueprintName = "app10"
+            ReferencedContainer = "container:app10.xcodeproj">
+>>>>>>> giaodien
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -113,9 +143,15 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+<<<<<<< HEAD
             BuildableName = "appbanhang.app"
             BlueprintName = "appbanhang"
             ReferencedContainer = "container:appbanhang.xcodeproj">
+=======
+            BuildableName = "app10.app"
+            BlueprintName = "app10"
+            ReferencedContainer = "container:app10.xcodeproj">
+>>>>>>> giaodien
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

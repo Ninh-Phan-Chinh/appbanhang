@@ -43,7 +43,11 @@ C2:  78795 5894       4       java.lang.Class::privateGetPublicMethods (267 byte
 
 Java Threads: ( => current thread )
   0x000000001971b000 JavaThread "Memory manager" [_thread_blocked, id=5692, stack(0x0000000020d30000,0x0000000020e30000)]
+<<<<<<< HEAD
   0x0000000019715000 JavaThread "Cache worker for Build Output Cleanup Cache (C:\Users\long\Desktop\project\android\appbanhang\android\.gradle\buildOutputCleanup)" [_thread_blocked, id=10560, stack(0x000000001fba0000,0x000000001fca0000)]
+=======
+  0x0000000019715000 JavaThread "Cache worker for Build Output Cleanup Cache (C:\Users\long\Desktop\project\android\app10\android\.gradle\buildOutputCleanup)" [_thread_blocked, id=10560, stack(0x000000001fba0000,0x000000001fca0000)]
+>>>>>>> giaodien
   0x0000000019719000 JavaThread "pool-1-thread-1" [_thread_blocked, id=12144, stack(0x000000001f6a0000,0x000000001f7a0000)]
   0x0000000019716000 JavaThread "Build operations Thread 4" [_thread_blocked, id=10016, stack(0x000000001f3a0000,0x000000001f4a0000)]
   0x0000000019717800 JavaThread "Build operations Thread 3" [_thread_blocked, id=1444, stack(0x000000001f2a0000,0x000000001f3a0000)]
@@ -52,7 +56,11 @@ Java Threads: ( => current thread )
   0x0000000016dcd800 JavaThread "Cache worker for execution history cache (C:\Users\long\.gradle\caches\5.4.1\executionHistory)" [_thread_blocked, id=4188, stack(0x000000001eba0000,0x000000001eca0000)]
   0x0000000016dcc800 JavaThread "Cache worker for cache directory md-rule (C:\Users\long\.gradle\caches\5.4.1\md-rule)" [_thread_blocked, id=11132, stack(0x000000001c660000,0x000000001c760000)]
   0x0000000016dcc000 JavaThread "Cache worker for cache directory md-supplier (C:\Users\long\.gradle\caches\5.4.1\md-supplier)" [_thread_blocked, id=7372, stack(0x000000001bea0000,0x000000001bfa0000)]
+<<<<<<< HEAD
   0x0000000016dd0800 JavaThread "Cache worker for file hash cache (C:\Users\long\Desktop\project\android\appbanhang\android\.gradle\5.4.1\fileHashes)" [_thread_blocked, id=7436, stack(0x000000001bba0000,0x000000001bca0000)]
+=======
+  0x0000000016dd0800 JavaThread "Cache worker for file hash cache (C:\Users\long\Desktop\project\android\app10\android\.gradle\5.4.1\fileHashes)" [_thread_blocked, id=7436, stack(0x000000001bba0000,0x000000001bca0000)]
+>>>>>>> giaodien
   0x0000000016dcf000 JavaThread "Cache worker for journal cache (C:\Users\long\.gradle\caches\journal-1)" [_thread_blocked, id=10940, stack(0x0000000018930000,0x0000000018a30000)]
   0x0000000016dce000 JavaThread "File lock request listener" [_thread_in_native, id=7908, stack(0x0000000018830000,0x0000000018930000)]
   0x0000000016dcf800 JavaThread "Cache worker for file hash cache (C:\Users\long\.gradle\caches\5.4.1\fileHashes)" [_thread_blocked, id=2240, stack(0x0000000018730000,0x0000000018830000)]
@@ -334,7 +342,11 @@ Launcher Type: SUN_STANDARD
 
 Environment Variables:
 JAVA_HOME=C:\Program Files\Java\jdk1.8.0_221
+<<<<<<< HEAD
 CLASSPATH=C:\Users\long\Desktop\project\android\appbanhang\android\\gradle\wrapper\gradle-wrapper.jar
+=======
+CLASSPATH=C:\Users\long\Desktop\project\android\app10\android\\gradle\wrapper\gradle-wrapper.jar
+>>>>>>> giaodien
 PATH=C:\Python27\;C:\Python27\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Program Files\Java\jdk1.8.0_221\bin;C:\Program Files (x86)\Yarn\bin\;C:\Python27\;C:\Python27\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Program Files\Java\jdk1.8.0_221\bin;C:\Users\long\AppData\Local\Microsoft\WindowsApps;C:\Users\long\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\long\AppData\Roaming\npm;C:\Users\long\AppData\Local\Android\Sdk\platform-tools;C:\Users\long\AppData\Local\Yarn\bin;C:\Users\long\AppData\Local\Programs\Git\cmd
 USERNAME=long
 OS=Windows_NT
