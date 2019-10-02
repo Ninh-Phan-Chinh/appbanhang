@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
   "name": "appbanhang",
-=======
-  "name": "app10",
->>>>>>> giaodien
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -16,11 +12,7 @@
     "react-native": "0.60.5",
     "react-native-drawer": "^2.5.1",
     "react-native-gesture-handler": "^1.4.1",
-<<<<<<< HEAD
     "react-native-maps": "^0.25.0",
-=======
-    "react-native-maps": "0.25.0",
->>>>>>> giaodien
     "react-native-reanimated": "^1.2.0",
     "react-native-svg": "9.2.4",
     "react-native-swiper": "^1.5.14",
